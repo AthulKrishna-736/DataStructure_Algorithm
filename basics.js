@@ -39,9 +39,48 @@ function factorial(n) {
     return result;
 }
 
-console.log(factorial(3))
-console.log(factorial(4))
-console.log(factorial(5))
+// console.log(factorial(3))
+// console.log(factorial(4))
+// console.log(factorial(5))
 
 //Time complexity O(n)
 //Space complexity O(1)
+
+function Prime(n) {
+    if (n < 2) {
+        return false;
+    }
+    for (let i = 2; i < n; i++) {
+        if (n % i == 0) {
+            return false;
+        }
+    }
+    return true;
+
+}
+
+// console.log(Prime(1))
+// console.log(Prime(3))
+// console.log(Prime(6))
+
+//Time complexity O(n)
+//space complexity O(1)
+
+function powerOfTwo(n) {
+    if (n < 1) {
+        return false;
+    }
+    while (n > 1) {
+        if (n % 2 !== 0) {
+            return false;
+        }
+        n = n / 2;
+    }
+    return true;
+}
+
+console.log(powerOfTwo(1))
+console.log(powerOfTwo(2))
+console.log(powerOfTwo(5))
+
+//Time complexity O(log n) 
