@@ -56,32 +56,26 @@
  └── recursion(6) → returns 8 (5+3)
 
 */
-
 function recursion(n) {
     if (n < 2) return n;
     return recursion(n - 1) + recursion(n - 2);
 }
-
 // console.log(recursion(3))
 // console.log(recursion(6))
 
 
 //find factorial of a integer here ?
-
 function recursiveFactorial(n) {
     if (n == 0) return 1;
 
     return n * recursiveFactorial(n - 1)
 }
-
 // console.log(recursiveFactorial(4))
 // console.log(recursiveFactorial(5))
 
 //Time complexity O(n)
 
-
 /* 
-
 power(2, 8)
  ├── power(2, 4)
  │    ├── power(2, 2)
@@ -100,12 +94,12 @@ function sum(n) {
     }
     return n + sum(n - 1)
 }
-
 // console.log(sum(5))
 // console.log(sum(4))
 
 //Time complexity  O(n)
 //space complexity O(n)
+
 
 function power(n, p) {
     if (p === 0) {
@@ -113,7 +107,6 @@ function power(n, p) {
     }
     return n * power(n, p - 1);
 }
-
 // console.log(power(2, 3))
 // console.log(power(3, 3))
 
@@ -126,11 +119,132 @@ function revString(str, index = 0, result = '') {
 }
 
 function reverseStr(str, index = str.length - 1) {
-    if(index < 0) return '';
+    if (index < 0) return '';
     return str[index] + reverseStr(str, index - 1)
 }
+// console.log(reverseStr('hello world'))
+// console.log(revString('hello'))
+// console.log(revString('world'))
 
-console.log(reverseStr('hello world'))
 
-console.log(revString('hello'))
-console.log(revString('world'))
+function sumOfDigits(n) {
+    if (n == 0) return 0;
+    return (n % 10) + sumOfDigits(Math.floor(n / 10))
+}
+
+// console.log(sumOfDigits(1234))
+// console.log(sumOfDigits(345))
+
+
+
+function removeChar(str, char, index = 0, result = '') {
+    if (index == str.length) {
+        return result
+    }
+    if (str[index] == char) {
+        result += ''
+    } else {
+        result += str[index]
+    }
+
+    return removeChar(str, char, index + 1, result);
+}
+
+// console.log(removeChar('hello', 'l'));
+// console.log(removeChar('this is super', 's'))
+
+
+function removeElem(arr, index, target) {
+    if (index >= arr.length) {
+        return arr;
+    }
+
+    if (arr[index] == target) {
+        for (let i = index; i < arr.length; i++) {
+            arr[i] = arr[i + 1]
+        }
+        arr.length -= 1
+    }
+
+    // arr[index] === target ? arr.splice(index, 1): arr[index]
+
+    return removeElem(arr, index + 1, target)
+}
+let arr = [1, 2, 3, 2, 4, 5, 6, 5]
+// console.log(removeElem(arr, 0, 2))
+// console.log(removeElem(arr,0,5))
+
+
+function isSorted(arr, index = 0) {
+    if (index == arr.length) {
+        return true;
+    }
+
+    if(arr[index] > arr[index+1]) return  false
+
+    return isSorted(arr, index + 1)
+}
+
+let arr1 = [1, 3, 4, 5, 6]
+// console.log(isSorted(arr1, 0))
+
+
+function sumofArray(arr, index = 0, sum = 0){
+    if(index == arr.length){
+        return sum
+    }
+    sum+=arr[index];
+    return sumofArray(arr, index+1, sum)
+}
+
+// console.log(sumofArray([1,2,3,4,5,6,7,8,9]));
+// console.log(sumofArray([3,4,5,6]));
+
+
+function maxElem(arr, index = 0, max = -Infinity, secMax = -Infinity){
+    if(index == arr.length){
+        return secMax;
+    }
+    
+    // max = arr[index] > max ? arr[index] : max  finding max
+    if(arr[index]>max){
+        secMax = max
+        max = arr[index]
+    }else if(arr[index]>secMax){
+        secMax = arr[index]
+    }
+
+    return maxElem(arr, index+1, max, secMax)
+}
+
+
+// console.log(maxElem([1,3,6,2,5,8,7]))
+// console.log(maxElem([3,5,11,6,7,12]))
+
+function isPallindrome(str, start = 0, end){
+    if(start == end){
+        return true
+    }
+
+    if(str[start] != str[end]){
+        return false;
+    }
+
+    return isPallindrome(str, start+1, end-1)
+}
+let a = 'hello'
+let b = 'wow'
+// console.log(isPallindrome(a, 0,a.length-1))
+// console.log(isPallindrome(b, 0, b.length-1))
+
+
+function subsequences(str, index = 0, current = "") {
+    if (index === str.length) {
+        console.log(current);
+        return;
+    }
+    subsequences(str, index + 1, current + str[index]); 
+    subsequences(str, index + 1, current); 
+}
+
+// subsequences("abc");
