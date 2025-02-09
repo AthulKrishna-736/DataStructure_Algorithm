@@ -221,16 +221,16 @@ function maxElem(arr, index = 0, max = -Infinity, secMax = -Infinity){
 // console.log(maxElem([1,3,6,2,5,8,7]))
 // console.log(maxElem([3,5,11,6,7,12]))
 
-function isPallindrome(str, start = 0, end){
-    if(start == end){
+function isPallindrome(str, index = 0, end){
+    if(index == end){
         return true
     }
 
-    if(str[start] != str[end]){
+    if(str[index] != str[end]){
         return false;
-    }
+    }   
 
-    return isPallindrome(str, start+1, end-1)
+    return isPallindrome(str, index+1, end-1)
 }
 let a = 'hello'
 let b = 'wow'
