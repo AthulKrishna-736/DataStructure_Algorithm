@@ -992,13 +992,73 @@ class DoubleLinkedList {
 
 const list7 = new DoubleLinkedList()
 
-list7.print()
-list7.prepend(1)
-list7.prepend(2)
-list7.append(3)
-list7.append(4)
-list7.append(5)
-list7.print()
-console.log(list7.removeFromEnd())
-console.log(list7.removeFromFront())
-list7.print()
+// list7.print()
+// list7.prepend(1)
+// list7.prepend(2)
+// list7.append(3)
+// list7.append(4)
+// list7.append(5)
+// list7.print()
+// console.log(list7.removeFromEnd())
+// console.log(list7.removeFromFront())
+// list7.print()
+
+
+class Node8 {
+    constructor(value) {
+        this.value = value
+        this.prev = null
+        this.next = null
+    }
+}
+
+class DoubleLinkedList1 {
+    constructor() {
+        this.head = null
+        this.tail = null
+        this.size = 0
+    }
+
+    prepend(value) {
+        const node = new Node8(value)
+        if (!this.head) {
+            this.head = node
+            this.tail = node
+        } else {
+            node.next = this.head
+            this.head.prev = node
+            this.head = node
+        }
+    }
+
+    print() {
+        if (!this.head) {
+            console.log('list is empty')
+        }
+        let currHead = this.head
+        let val = '';
+        while (currHead) {
+            val += `${currHead.value} -> `;
+            currHead = currHead.next
+        }
+        console.log(val)
+    }
+}
+
+
+const list8 = new DoubleLinkedList1()
+
+list8.prepend(10)
+list8.prepend(20)
+list8.prepend(30)
+list8.print()
+
+
+
+
+
+
+
+
+
+
