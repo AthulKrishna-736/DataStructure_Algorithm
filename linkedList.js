@@ -1020,7 +1020,7 @@ class DoubleLinkedList1 {
     }
 
     prepend(value) {
-        const node = new Node8(value)
+        const node =    Node8(value)
         if (!this.head) {
             this.head = node
             this.tail = node
@@ -1029,6 +1029,86 @@ class DoubleLinkedList1 {
             this.head.prev = node
             this.head = node
         }
+        this.size++
+    }
+
+    append(value) {
+        const node = new Node8(value)
+        if (!this.head) {
+            this.head = node
+            this.tail = node
+        } else {
+            this.tail.next = node
+            node.prev = this.tail
+            this.tail = node
+        }
+        this.size++
+    }
+
+    insert(value, index) {
+        if (index < 0 || index > this.size) {
+            return console.log('index is invalid')
+        }
+        if (index == 0) {
+            this.prepend(value)
+            return
+        }
+        if (index == this.size) {
+            this.append(value)
+            return
+        } else {
+            const node = new Node8(value)
+            let currHead = this.head
+            for (let i = 0; i < index - 1; i++) {
+                currHead = currHead.next
+            }
+            node.next = currHead.next
+            currHead.next.prev = node
+            currHead.next = node
+            node.prev = currHead
+            this.size++
+        }
+    }
+
+    remove(index) {
+        if (index < 0 || index >= this.size) {
+            return console.log('index is invalid')
+        }
+        let removeNode;
+        if (index == 0) {
+            removeNode = this.head
+            this.head = this.head.next
+            if (this.head) {
+                this.head.prev = null
+            } else {
+                this.tail = null
+            }
+            this.size--
+            return removeNode.value
+        }
+        if (index == this.size) {
+            removeNode = this.tail
+            this.tail = this.tail.prev
+            if (this.tail) {
+                this.tail.next = null
+            } else {
+                this.head = null
+            }
+            this.size--
+        }
+
+        let currHead = this.head;
+        for (let i = 0; i < index - 1; i++) {
+            currHead = currHead.next
+        }
+        removeNode = currHead.next
+        currHead.next = removeNode.next
+
+        if (removeNode.next) {
+            removeNode.next.prev = removeNode.prev
+        }
+        this.size--
+        return removeNode.value
     }
 
     print() {
@@ -1051,8 +1131,13 @@ const list8 = new DoubleLinkedList1()
 list8.prepend(10)
 list8.prepend(20)
 list8.prepend(30)
+list8.append(40)
+list8.append(50)
+list8.insert(60, 3)
 list8.print()
-
+list8.remove(5)
+console.log(list8.size)
+list8.print()
 
 
 
