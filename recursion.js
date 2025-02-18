@@ -180,7 +180,7 @@ function isSorted(arr, index = 0) {
         return true;
     }
 
-    if(arr[index] > arr[index+1]) return  false
+    if (arr[index] > arr[index + 1]) return false
 
     return isSorted(arr, index + 1)
 }
@@ -189,48 +189,48 @@ let arr1 = [1, 3, 4, 5, 6]
 // console.log(isSorted(arr1, 0))
 
 
-function sumofArray(arr, index = 0, sum = 0){
-    if(index == arr.length){
+function sumofArray(arr, index = 0, sum = 0) {
+    if (index == arr.length) {
         return sum
     }
-    sum+=arr[index];
-    return sumofArray(arr, index+1, sum)
+    sum += arr[index];
+    return sumofArray(arr, index + 1, sum)
 }
 
 // console.log(sumofArray([1,2,3,4,5,6,7,8,9]));
 // console.log(sumofArray([3,4,5,6]));
 
 
-function maxElem(arr, index = 0, max = -Infinity, secMax = -Infinity){
-    if(index == arr.length){
+function maxElem(arr, index = 0, max = -Infinity, secMax = -Infinity) {
+    if (index == arr.length) {
         return secMax;
     }
-    
+
     // max = arr[index] > max ? arr[index] : max  finding max
-    if(arr[index]>max){
+    if (arr[index] > max) {
         secMax = max
         max = arr[index]
-    }else if(arr[index]>secMax){
+    } else if (arr[index] > secMax) {
         secMax = arr[index]
     }
 
-    return maxElem(arr, index+1, max, secMax)
+    return maxElem(arr, index + 1, max, secMax)
 }
 
 
 // console.log(maxElem([1,3,6,2,5,8,7]))
 // console.log(maxElem([3,5,11,6,7,12]))
 
-function isPallindrome(str, start = 0, end){
-    if(start == end){
+function isPallindrome(str, index = 0, end) {
+    if (index == end) {
         return true
     }
 
-    if(str[start] != str[end]){
+    if (str[index] != str[end]) {
         return false;
     }
 
-    return isPallindrome(str, start+1, end-1)
+    return isPallindrome(str, index + 1, end - 1)
 }
 let a = 'hello'
 let b = 'wow'
@@ -243,8 +243,8 @@ function subsequences(str, index = 0, current = "") {
         console.log(current);
         return;
     }
-    subsequences(str, index + 1, current + str[index]); 
-    subsequences(str, index + 1, current); 
+    subsequences(str, index + 1, current + str[index]);
+    subsequences(str, index + 1, current);
 }
 
 // subsequences("abc");
