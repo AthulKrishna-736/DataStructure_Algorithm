@@ -1020,7 +1020,7 @@ class DoubleLinkedList1 {
     }
 
     prepend(value) {
-        const node =    Node8(value)
+        const node = Node8(value)
         if (!this.head) {
             this.head = node
             this.tail = node
@@ -1122,6 +1122,21 @@ class DoubleLinkedList1 {
             currHead = currHead.next
         }
         console.log(val)
+    }
+
+    reverse() {
+        if (!this.head) {
+            console.log('the list is empty')
+        }
+        let prev = null;
+        let currHead = this.head;
+
+        while (currHead.next) {
+            prev = currHead.prev
+            currHead.prev = currHead.next
+            currHead.next = prev
+            currHead = currHead.prev
+        }
     }
 }
 
