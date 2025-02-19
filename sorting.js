@@ -228,13 +228,13 @@ function quickSort1(arr) {
 
 
 function mergeSort(arr) {
-    if (arr.length <= 1) return arr; 
+    if (arr.length <= 1) return arr;
 
-    let mid = Math.floor(arr.length / 2); 
-    let left = mergeSort(arr.slice(0, mid)); 
-    let right = mergeSort(arr.slice(mid)); 
+    let mid = Math.floor(arr.length / 2);
+    let left = mergeSort(arr.slice(0, mid));
+    let right = mergeSort(arr.slice(mid));
 
-    return merge(left, right); 
+    return merge(left, right);
 }
 
 function merge(left, right) {
@@ -254,5 +254,54 @@ function merge(left, right) {
     return [...result, ...left.slice(i), ...right.slice(j)];
 }
 
-console.log(mergeSort([5, 3, 8, 4, 2, 7, 1]));
+// console.log(mergeSort([5, 3, 8, 4, 2, 7, 1]));
 
+function mergeSort1(arr) {
+    if (arr.length < 2) {
+        return arr
+    }
+    const mid = Math.floor(arr.length / 2)
+    const leftArr = arr.slice(0, mid)
+    const rightArr = arr.slice(mid)
+
+    return merge1(mergeSort1(leftArr), mergeSort1(rightArr))
+}
+
+function merge1(leftArr, rightArr) {
+    const sortedArr = []
+    while (leftArr.length && rightArr.length) {
+        if (leftArr[0] <= rightArr[0]) {
+            sortedArr.push(leftArr.shift())
+        } else {
+            sortedArr.push(rightArr.shift())
+        }
+    }
+    return [...sortedArr, ...leftArr, ...rightArr]
+}
+
+// console.log(mergeSort1([3, 8, 1, 2, 9]))
+
+function mergeSort2(arr) {
+    if (arr.length < 2) {
+        return arr
+    }
+    const mid = Math.floor(arr.length / 2)
+    const left = arr.slice(0, mid)
+    const right = arr.slice(mid)
+
+    return merge2(mergeSort2(left), mergeSort2(right))
+}
+
+function merge2(left, right) {
+    const sortedArr = []
+    while (left.length && right.length) {
+        if (left[0] <= right[0]) {
+            sortedArr.push(left.shift())
+        } else {
+            sortedArr.push(right.shift())
+        }
+    }
+    return [...sortedArr, ...left, ...right]
+}
+
+// console.log(mergeSort1([9, 1, 7, 3, 5]))
