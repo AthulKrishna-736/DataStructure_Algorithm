@@ -130,7 +130,7 @@ class Stack2 {
         return this.top === this.items.length - 1
     }
 
-    display(){
+    display() {
         console.log(this.items.toString())
     }
 }
@@ -138,8 +138,62 @@ class Stack2 {
 
 const stack2 = new Stack2(10)
 
-stack2.display()
-// stack2.peek()
-stack2.push(10)
-stack2.push(20)
-stack2.display()
+// stack2.display()
+// // stack2.peek()
+// stack2.push(10)
+// stack2.push(20)
+// stack2.display()
+
+
+class Stack3 {
+    constructor(size = Infinity) {
+        this.items = []
+        this.size = size
+    }
+
+    push(element) {
+        if (this.items.length >= this.size) {
+            console.log('Stack overflow: cannot push')
+            return
+        }
+        this.items.push(element)
+    }
+
+    pop() {
+        if (this.items.length === 0) {
+            return console.log('Stack Underflow: Cannot pop')
+        }
+        return this.items.pop()
+    }
+
+    display() {
+        if (this.items.length === 0) {
+            return console.log('The stack is empty')
+        }
+        console.log(this.items.join(' -> '))
+    }
+
+    peek() {
+        if (this.items.length === 0) {
+            return console.log('the stack is empty')
+        }
+
+        return this.items[this.items.length - 1]
+    }
+}
+
+const stack3 = new Stack3(5)
+
+stack3.display()
+stack3.push(10)
+stack3.push(20)
+stack3.push(30)
+stack3.push(40)
+stack3.display()
+console.log(stack3.peek())
+console.log(stack3.pop())
+stack3.display()
+stack3.push(50)
+stack3.push(60)
+stack3.push(70)
+stack3.display()
