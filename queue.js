@@ -261,19 +261,19 @@ class CircularQueue1 {
 
 const cirQueue = new CircularQueue1(5)
 
-cirQueue.display()
-cirQueue.enqueue(10)
-cirQueue.enqueue(20)
-cirQueue.enqueue(30)
-cirQueue.enqueue(40)
-cirQueue.enqueue(50)
-cirQueue.enqueue(60)
-cirQueue.display()
-console.log(cirQueue.peek())
-console.log(cirQueue.dequeue())
-cirQueue.display()
-cirQueue.enqueue(60)
-cirQueue.display()
+// cirQueue.display()
+// cirQueue.enqueue(10)
+// cirQueue.enqueue(20)
+// cirQueue.enqueue(30)
+// cirQueue.enqueue(40)
+// cirQueue.enqueue(50)
+// cirQueue.enqueue(60)
+// cirQueue.display()
+// console.log(cirQueue.peek())
+// console.log(cirQueue.dequeue())
+// cirQueue.display()
+// cirQueue.enqueue(60)
+// cirQueue.display()
 
 
 class CircularQueue2 {
@@ -289,7 +289,7 @@ class CircularQueue2 {
   }
 
   isEmpty() {
-    
+    return this.front == -1
   }
 
   enqueue(element) {
@@ -297,5 +297,53 @@ class CircularQueue2 {
       console.log('the circular queue is full')
       return
     }
+    if (this.isEmpty()) {
+      this.front = 0
+    }
+
+    this.rear = (this.rear + 1) % this.maxSize
+    this.items[this.rear] = element
+  }
+
+  dequeue() {
+    if (this.isEmpty()) {
+      console.log('stack underflow: queue is empty')
+      return null
+    }
+    const removeElement = this.items[this.front]
+    this.items[this.front] = null;
+    if (this.front == this.rear) {
+      this.front = this.rear = -1
+    } else {
+      this.front = (this.front + 1) % this.maxSize
+    }
+    return removeElement
+  }
+
+  display() {
+    if (this.isEmpty()) {
+      return console.log('the queue is empty')
+    }
+    let i = this.front
+    let val = ''
+    while (true) {
+      val += `${this.items[i]} - `
+      if (i == this.rear) {
+        break
+      }
+      i = (i + 1) % this.maxSize
+    }
+    console.log(val)
   }
 }
+
+
+const cirQueue1 = new CircularQueue2(5)
+
+
+cirQueue1.display()
+cirQueue1.dequeue()
+cirQueue1.enqueue(10)
+cirQueue1.enqueue(20)
+cirQueue1.enqueue(30)
+cirQueue1.display()
