@@ -136,6 +136,14 @@ class Bst {
 
         }
     }
+
+    dfsPostOrder(root){
+        if(root){
+            this.dfsPostOrder(root.left)
+            this.dfsPostOrder(root.right)
+            console.log(root.value)
+        }
+    }
 }
 
 const bst1 = new Bst()
@@ -149,3 +157,8 @@ console.log(bst1.search(bst1.root, 10))
 console.log(bst1.search(bst1.root, 110))
 console.log(bst1.search(bst1.root, 4))
 console.log('pre order: ')
+bst1.dfsPreOrder(bst1.root)
+console.log('in order: ')
+bst1.dfsInOrder(bst1.root)
+console.log('post order: ')
+bst1.dfsPostOrder(bst1.root)
