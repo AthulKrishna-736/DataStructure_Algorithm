@@ -109,9 +109,9 @@ class Tree1 {
     }
 
     dfsPostorder(node = this.root) {
-        if(!node) return
+        if (!node) return
 
-        for(const child of node.children){
+        for (const child of node.children) {
             this.dfsPostorder(child)
         }
 

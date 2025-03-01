@@ -559,7 +559,7 @@ class Bst2 {
     }
 
     treeheight(root) {
-        if(!root) return -1
+        if (!root) return -1
         return 1 + Math.max(this.treeheight(root.left), this.treeheight(root.right))
     }
 }

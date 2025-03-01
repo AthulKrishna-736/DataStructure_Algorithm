@@ -298,7 +298,7 @@ function heapSort1(arr) {
     }
 }
 
-let arr1 = [12,54,3,6,20]
+let arr1 = [12, 54, 3, 6, 20]
 
 heapSort1(arr1)
 console.log(arr1)

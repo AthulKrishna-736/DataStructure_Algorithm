@@ -213,9 +213,9 @@ class HashTable1 {
     }
   }
 
-  display(){
-    for(let i = 0; i<this.table.length; i++){
-      if(this.table[i]){
+  display() {
+    for (let i = 0; i < this.table.length; i++) {
+      if (this.table[i]) {
         console.log(i, this.table[i])
       }
     }

@@ -144,13 +144,14 @@ class Trie1 {
 
 const trie1 = new Trie1()
 
-// trie1.insert('ban')
+trie1.insert('ban')
 // trie1.insert('bat')
 // trie1.insert('apply')
 // console.dir(trie1.root, { depth: null })
 // console.log(trie1.search('ban'))
 // console.log(trie1.search('banned'))
 // console.log(trie1.autocomplete('b'))
+trie1.delete('ban')
 
 
 class TrieNode2 {
@@ -211,11 +212,111 @@ class Trie2 {
 
 const trie2 = new Trie2()
 
-trie2.insert('Apple')
-trie2.insert('Apply')
-trie2.insert('batman')
-trie2.insert('batsman')
-trie2.insert('Ape')
+// trie2.insert('Apple')
+// trie2.insert('Apply')
+// trie2.insert('batman')
+// trie2.insert('batsman')
+// trie2.insert('Ape')
 
-console.log(trie2.search('Apple'))
-console.log(trie2.autocomplete('Ap'))
+// console.log(trie2.search('Apple'))
+// console.log(trie2.autocomplete('Ap'))
+
+class TrieNode3 {
+    constructor() {
+        this.children = {}
+        this.isEnd = false
+    }
+}
+
+class Trie3 {
+    constructor() {
+        this.root = new TrieNode3()
+    }
+
+    insert(word) {
+        let node = this.root
+
+        for (let char of word) {
+            if (!node.children[char]) {
+                node.children[char] = new TrieNode3()
+            }
+            node = node.children[char]
+        }
+        node.isEnd = true
+    }
+
+    search(word) {
+        let node = this.root
+
+        for (let char of word) {
+            if (!node.children[char]) return false
+            node = node.children[char]
+        }
+        return node.isEnd
+    }
+
+    delete(word) {
+        let node = this.root
+
+        function deleteHelper(node, word, index) {
+            if (index == word.length) {
+                if (!node.isEnd) return false
+                node.isEnd = false
+
+                return Object.keys(node.children).length == 0
+            }
+
+            let char = word[index]
+
+            if (!node.children[char]) return false
+
+            let shouldDelete = deleteHelper(node.children[char], word, index + 1)
+
+            if (shouldDelete) {
+                delete node.children[char]
+                return Object.keys(node.children).length === 0 && !node.isEnd
+            }
+            return false
+        }
+        deleteHelper(node, word, 0)
+    }
+
+    autoComplete(prefix) {
+        let node = this.root
+
+        for (let char of prefix) {
+            if (!node.children[char]) return []
+            node = node.children[char]
+        }
+
+        let result = []
+
+        function dfs(node, prefix) {
+            if (node.isEnd) {
+                result.push(prefix)
+            }
+
+            for (let child in node.children) {
+                dfs(node.children[child], prefix + child)
+            }
+        }
+        dfs(node, prefix)
+        return result
+    }
+}
+
+
+const trie3 = new Trie3()
+
+trie3.insert('ban')
+trie3.insert('bat')
+trie3.insert('batter')
+trie3.insert('cat')
+trie3.insert('caterpillar')
+trie3.insert('catagory')
+console.log(trie3.search('caterpillar'))
+console.log(trie3.search('batsman'))
+console.log(trie3.search('bat'))
+console.log(trie3.autoComplete('ba'))
+trie3.delete('bat')
+console.log(trie.search('bat'))
