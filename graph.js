@@ -22,51 +22,15 @@ class Graph {
 }
 
 const g = new Graph()
-g.addVertex('A')
-g.addVertex('B')
-g.addVertex('C')
-g.addEdge('A', 'B')
-g.addEdge('A', 'C')
-g.addEdge('B', 'C')
+// g.addVertex('A')
+// g.addVertex('B')
+// g.addVertex('C')
+// g.addEdge('A', 'B')
+// g.addEdge('A', 'C')
+// g.addEdge('B', 'C')
 
-g.printGraph()
-console.log(g.adjacenecyList)
-
-
-class Graph {
-    constructor() {
-        this.adjacencyList = {}; // Fixed typo from 'adjacenecyList'
-    }
-
-    addVertex(vertex) {
-        if (!this.adjacencyList[vertex]) {
-            this.adjacencyList[vertex] = [];
-        }
-    }
-
-    addEdge(vertex1, vertex2) {
-        this.adjacencyList[vertex1].push(vertex2);
-        this.adjacencyList[vertex2].push(vertex1); // Since it's undirected
-    }
-
-    printGraph() {
-        for (let vertex in this.adjacencyList) {
-            console.log(vertex, '->', this.adjacencyList[vertex]);
-        }
-    }
-}
-
-// Usage
-const g = new Graph();
-g.addVertex('A');
-g.addVertex('B');
-g.addVertex('C');
-g.addEdge('A', 'B');
-g.addEdge('A', 'C');
-g.addEdge('B', 'C');
-
-g.printGraph();
-
+// g.printGraph()
+// console.log(g.adjacenecyList)
 
 
 
@@ -82,7 +46,7 @@ class DirectedGraph {
     }
 
     addEdge(vertex1, vertex2) {
-        this.adjacencyList[vertex1].push(vertex2); // Only one direction
+        this.adjacencyList[vertex1].push(vertex2);
     }
 
     printGraph() {
@@ -94,102 +58,26 @@ class DirectedGraph {
 
 // Usage
 const dg = new DirectedGraph();
-dg.addVertex('A');
-dg.addVertex('B');
-dg.addVertex('C');
-dg.addEdge('A', 'B');
-dg.addEdge('B', 'C');
+// dg.addVertex('A');
+// dg.addVertex('B');
+// dg.addVertex('C');
+// dg.addEdge('A', 'B');
+// dg.addEdge('B', 'C');
 
-dg.printGraph();
-
-
-
-class WeightedGraph {
-    constructor() {
-        this.adjacencyList = {};
-    }
-
-    addVertex(vertex) {
-        if (!this.adjacencyList[vertex]) {
-            this.adjacencyList[vertex] = [];
-        }
-    }
-
-    addEdge(vertex1, vertex2, weight) {
-        this.adjacencyList[vertex1].push({ node: vertex2, weight });
-        this.adjacencyList[vertex2].push({ node: vertex1, weight }); // If undirected
-    }
-
-    printGraph() {
-        for (let vertex in this.adjacencyList) {
-            console.log(vertex, '->', this.adjacencyList[vertex].map(e => `${e.node}(${e.weight})`).join(', '));
-        }
-    }
-}
-
-// Usage
-const wg = new WeightedGraph();
-wg.addVertex('A');
-wg.addVertex('B');
-wg.addVertex('C');
-wg.addEdge('A', 'B', 5);
-wg.addEdge('B', 'C', 2);
-wg.addEdge('A', 'C', 10);
-
-wg.printGraph();
-
-
-
-
-class CyclicGraph extends Graph {
-    hasCycleUtil(vertex, visited, parent) {
-        visited[vertex] = true;
-        for (let neighbor of this.adjacencyList[vertex]) {
-            if (!visited[neighbor]) {
-                if (this.hasCycleUtil(neighbor, visited, vertex)) return true;
-            } else if (neighbor !== parent) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    hasCycle() {
-        const visited = {};
-        for (let vertex in this.adjacencyList) {
-            if (!visited[vertex] && this.hasCycleUtil(vertex, visited, null)) {
-                return true;
-            }
-        }
-        return false;
-    }
-}
-
-// Usage
-const cg = new CyclicGraph();
-cg.addVertex('A');
-cg.addVertex('B');
-cg.addVertex('C');
-cg.addEdge('A', 'B');
-cg.addEdge('B', 'C');
-cg.addEdge('C', 'A'); // Cycle
-
-console.log(cg.hasCycle()); // Output: true
-
-
+// dg.printGraph();
 
 
 function isBipartite(graph) {
     const color = {};
-    
+
     for (let node in graph) {
         if (!(node in color)) {
             const queue = [node];
             color[node] = 1;
-            
+
             while (queue.length) {
                 const cur = queue.shift();
-                
+
                 for (let neighbor of graph[cur]) {
                     if (!(neighbor in color)) {
                         color[neighbor] = -color[cur];
@@ -204,11 +92,76 @@ function isBipartite(graph) {
     return true;
 }
 
-// Usage
 const graph = {
-    A: ["X"], X: ["A", "B"], 
-    B: ["Y"], Y: ["B", "C"], 
+    A: ["X"], X: ["A", "B"],
+    B: ["Y"], Y: ["B", "C"],
     C: ["Z"], Z: ["C"]
 };
-console.log(isBipartite(graph)); // Output: true
+// console.log(isBipartite(graph)); 
 
+class Graph1 {
+    constructor() {
+        this.adjacencyList = {}
+    }
+
+    addVertex(vertex) {
+        if (!this.adjacencyList[vertex]) {
+            this.adjacencyList[vertex] = []
+        }
+    }
+
+    addEdge(vertex1, vertex2) {
+        this.adjacencyList[vertex1].push(vertex2)
+        this.adjacencyList[vertex2].push(vertex1)
+    }
+
+    dfs(start, visited = new Set()) {
+        console.log('Visiting:',start)
+        visited.add(start)
+
+        for(let neighbor of this.adjacencyList[start]){
+            if(!visited.has(neighbor)){
+                this.dfs(neighbor, visited)
+            }
+        }
+    }
+
+    bfs(start){
+        let queue = [start]
+        let visited = new Set()
+        visited.add(start)
+
+        while(queue.length > 0){
+            let vertex = queue.shift()
+            console.log('visiting: ', vertex)
+
+            for(let neighbor of this.adjacencyList[vertex]){
+                if(!visited.has(neighbor)){
+                    visited.add(neighbor)
+                    queue.push(neighbor)
+                }
+            }
+        }
+
+    }
+
+    printGraph() {
+        for (let vertex in this.adjacencyList) {
+            console.log(vertex, ' -> ', this.adjacencyList[vertex])
+        }
+    }
+}
+
+const g1 = new Graph1()
+
+g1.addVertex('A')
+g1.printGraph()
+g1.addVertex('B')
+g1.addVertex('C')
+g1.addEdge('A', 'B')
+g1.addEdge('A', 'C')
+g1.addEdge('B', 'C')
+g1.printGraph()
+console.log(g1.adjacencyList)
+g1.dfs('A')
+g1.bfs('A')
