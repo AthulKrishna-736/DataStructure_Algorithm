@@ -1,3 +1,25 @@
+class Graph {
+    constructor() {
+        this.adjacenecyList = {}
+    }
+
+    addVertex(vertex) {
+        if (!this.adjacenecyList[vertex]) {
+            this.adjacenecyList[vertex] = []
+        }
+    }
+
+    addEdge(vertex1, vertex2) {
+        this.adjacenecyList[vertex1].push(vertex2)
+        this.adjacenecyList[vertex2].push(vertex1)
+    }
+
+    printGraph() {
+        for (let vertex in this.adjacenecyList) {
+            console.log(vertex, '->', this.adjacenecyList[vertex])
+        }
+    }
+}
 
 class CyclicGraph extends Graph {
     hasCycleUtil(vertex, visited, parent) {
@@ -33,4 +55,4 @@ cg.addEdge('B', 'C');
 cg.addEdge('C', 'A'); // Cycle
 
 console.log(cg.hasCycle()); // Output: true
-
+cg.printGraph()

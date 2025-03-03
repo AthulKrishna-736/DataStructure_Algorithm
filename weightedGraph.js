@@ -21,7 +21,6 @@ class WeightedGraph {
     }
 }
 
-// Usage
 const wg = new WeightedGraph();
 wg.addVertex('A');
 wg.addVertex('B');
@@ -31,3 +30,4 @@ wg.addEdge('B', 'C', 2);
 wg.addEdge('A', 'C', 10);
 
 wg.printGraph();
+console.log(wg.adjacencyList)

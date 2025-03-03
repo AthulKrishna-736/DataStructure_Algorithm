@@ -248,3 +248,96 @@ function subsequences(str, index = 0, current = "") {
 }
 
 // subsequences("abc");
+
+
+function printNto1(n) {
+    if (n < 1) return;
+    console.log(n);
+    printNto1(n - 1);
+}
+// printNto1(5);
+
+
+function sumOfN(n) {
+    if (n == 0) return 0;
+    return n + sumOfN(n - 1);
+}
+// console.log(sumOfN(5));
+
+function countDigits(n) {
+    if (n === 0) return 0;
+    return 1 + countDigits(Math.floor(n / 10));
+}
+// console.log(countDigits(12345));
+
+
+function reverseArray(arr, start = 0, end = arr.length - 1) {
+    if (start >= end) return;
+    [arr[start], arr[end]] = [arr[end], arr[start]];
+    reverseArray(arr, start + 1, end - 1);
+}
+let arr2 = [1, 2, 3, 4, 5];
+// reverseArray(arr2);
+// console.log(arr2);
+
+
+function findSubsets(arr, index = 0, current = []) {
+    if (index === arr.length) {
+        console.log(current);
+        return;
+    }
+    findSubsets(arr, index + 1, [...current, arr[index]]);
+    findSubsets(arr, index + 1, current);
+}
+// findSubsets([1, 2, 3]);
+
+
+function countVowels(str, index = 0, count = 0) {
+    if (index === str.length) return count;
+
+    let vowels = "aeiouAEIOU";
+    if (vowels.includes(str[index])) count++;
+
+    return countVowels(str, index + 1, count);
+}
+
+console.log(countVowels("hello world"));
+
+
+
+function findMin(arr, index = 0, min = Infinity) {
+    if (index === arr.length) return min;
+    if (arr[index] < min) min = arr[index];
+
+    return findMin(arr, index + 1, min);
+}
+
+console.log(findMin([3, 1, 4, 1, 5, 9, 2, 6])); 
+
+
+function toBinary(n) {
+    if (n === 0) return "";
+    return toBinary(Math.floor(n / 2)) + (n % 2);
+}
+
+console.log(toBinary(10));
+
+
+function productArray(arr, index = 0) {
+    if (index === arr.length) return 1;
+    return arr[index] * productArray(arr, index + 1);
+}
+
+console.log(productArray([1, 2, 3, 4])); 
+
+
+function isPrime(n, i = 2) {
+    if (n <= 1) return false;
+    if (i * i > n) return true;
+    if (n % i === 0) return false;
+    
+    return isPrime(n, i + 1);
+}
+
+console.log(isPrime(7));
+console.log(isPrime(10)); 
