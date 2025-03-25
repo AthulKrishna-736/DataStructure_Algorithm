@@ -1155,6 +1155,29 @@ console.log(list8.size)
 list8.print()
 
 
+class Node9 {
+    constructor(value){
+        this.value = value
+        this.next = null
+    }
+}
+
+
+class LinkedList7 {
+    constructor(){
+        this.head = null
+        this.tail = null
+        this.size = 0
+    }
+
+    isEmpty(){
+        return this.size === 0
+    }
+
+    
+}
+
+
 
 
 
