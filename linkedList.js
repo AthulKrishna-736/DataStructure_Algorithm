@@ -1143,16 +1143,16 @@ class DoubleLinkedList1 {
 
 const list8 = new DoubleLinkedList1()
 
-list8.prepend(10)
-list8.prepend(20)
-list8.prepend(30)
-list8.append(40)
-list8.append(50)
-list8.insert(60, 3)
-list8.print()
-list8.remove(5)
-console.log(list8.size)
-list8.print()
+// list8.prepend(10)
+// list8.prepend(20)
+// list8.prepend(30)
+// list8.append(40)
+// list8.append(50)
+// list8.insert(60, 3)
+// list8.print()
+// list8.remove(5)
+// console.log(list8.size)
+// list8.print()
 
 
 class Node9 {
@@ -1174,11 +1174,103 @@ class LinkedList7 {
         return this.size === 0
     }
 
+    prepend(value){
+        const node = new Node9(value)
+        if(!this.head){
+            this.head = node
+            this.tail = node
+        } else {
+            node.next = this.head
+            this.head = node
+        }
+        this.size++
+    }
+
+    append(value){
+        const node = new Node9(value)
+        if(!this.head){
+            this.head = node
+            this.tail = node
+        } else {
+            this.tail.next = node
+            this.tail = node
+        }
+        this.size++
+    }
+
+    deleteNode(value){
+        if(!this.head){
+            return null
+        } else if(this.head.value === value){
+            this.head = this.head.next
+            if(!this.head) this.tail = null
+            this.size--
+            return
+        } else {
+            let curr = this.head;
+            while(curr.next && curr.next.value !== value){
+                curr = curr.next
+            }
+            if(curr.next){
+                if(curr.next == this.tail){
+                    this.tail = curr
+                }
+                curr.next = curr.next.next
+            }
+            this.size--
+        }
+    }  
+
+    printList(){
+        if(!this.head){
+            return null
+        } else {
+            let curr = this.head
+            let val = ''
+            while(curr.next){
+                val += curr.value + ' -> '
+                curr = curr.next
+            }
+            console.log(val)
+        }
+    }
+
+    reverse(){
+        if(!this.head){
+            return null
+        } else {
+            let prev = null
+            let curr = this.head
+            this.tail = this.head
+
+            while(curr){
+                let next = curr.next
+                curr.next = prev
+                prev = curr
+                curr = next
+            }
+            
+            this.head = prev
+        }
+    }
     
 }
 
-
-
+const list9 = new LinkedList7()
+list9.prepend(10)
+list9.prepend(20)
+list9.prepend(30)
+list9.append(40)
+list9.append(50)
+list9.append(60)
+// console.log(list9.size)
+// console.log(list9.head)
+// console.log(list9.tail)
+list9.printList()
+list9.deleteNode(50)
+list9.deleteNode(10)
+console.log(list9.size)
+list9.printList()
 
 
 
