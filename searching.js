@@ -110,3 +110,26 @@ function findTarget(arr, target, left, right) {
 
 // console.log(find2([-5, -3, 4, 8, 9, 13], -3));
 // console.log(find2([-5, -3, 4, 8, 9, 13], 13));
+
+function find3(arr, target){
+    return findTarget1(arr, target, 0, arr.length - 1)
+}
+
+function findTarget1(arr, target, left, right){
+    if(left > right){
+        return -1
+    }
+    let mid = Math.floor((left+right)/2)
+    
+    if(arr[mid] == target){
+        return [target, mid]
+    }
+
+    if(target < arr[mid]){
+        return findTarget1(arr, target, left, mid - 1)
+    } else {
+        return findTarget1(arr, target, mid+1, right)
+    }
+}
+
+// console.log(find3([1,2,3,4,5], 4))

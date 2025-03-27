@@ -1256,24 +1256,95 @@ class LinkedList7 {
     
 }
 
-const list9 = new LinkedList7()
-list9.prepend(10)
-list9.prepend(20)
-list9.prepend(30)
-list9.append(40)
-list9.append(50)
-list9.append(60)
+// const list9 = new LinkedList7()
+// list9.prepend(10)
+// list9.prepend(20)
+// list9.prepend(30)
+// list9.append(40)
+// list9.append(50)
+// list9.append(60)
+// // console.log(list9.size)
+// // console.log(list9.head)
+// // console.log(list9.tail)
+// list9.printList()
+// list9.deleteNode(50)
+// list9.deleteNode(10)
 // console.log(list9.size)
-// console.log(list9.head)
-// console.log(list9.tail)
-list9.printList()
-list9.deleteNode(50)
-list9.deleteNode(10)
-console.log(list9.size)
-list9.printList()
+// list9.printList()
 
 
+class Node10{
+    constructor(value){
+        this.value = value
+        this.prev = null
+        this.next = null
+    }
+}
+
+class DoubleLinkedList2 {
+    constructor(){
+        this.head = null
+        this.tail = null
+        this.size = 0
+    }
+
+    getSize(){
+        return this.size
+    }
+
+    prepend(value){
+        const node = new Node10(value)
+        if(!this.head){
+            this.head = node
+            this.tail = node
+        } else {
+            node.next = this.head
+            this.head.prev = node
+            this.head = node
+        }
+        this.size++
+    }
+
+    append(value){
+        const node = new Node10(value)
+        if(!this.head){
+            this.head = node
+            this.tail = node
+        } else {
+            this.tail.next = node
+            node.prev = this.tail
+            this.tail = node
+        }
+        this.size++
+    }
+
+    reverse(){
+        if(!this.head || !this.head.next) return;
+
+        let curr = this.head
+        let temp = null
+
+        while(curr){
+            temp = curr.prev
+            curr.prev = curr.next
+            curr.next = temp
+
+            curr = curr.prev
+        }
+        temp = this.head
+        this.head = this.tail
+        this.tail = temp
+    }
+}
 
 
-
-
+const list10 = new DoubleLinkedList2()
+list10.append(10)
+list10.append(12)
+list10.append(13)
+list10.append(13)
+list10.prepend(25)
+list10.prepend(206)
+list10.prepend(208)
+list10.prepend(200)
+console.log(list10.head)
