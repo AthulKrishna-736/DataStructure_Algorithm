@@ -184,16 +184,58 @@ class Stack3 {
 
 const stack3 = new Stack3(5)
 
-stack3.display()
-stack3.push(10)
-stack3.push(20)
-stack3.push(30)
-stack3.push(40)
-stack3.display()
-console.log(stack3.peek())
-console.log(stack3.pop())
-stack3.display()
-stack3.push(50)
-stack3.push(60)
-stack3.push(70)
-stack3.display()
+// stack3.display()
+// stack3.push(10)
+// stack3.push(20)
+// stack3.push(30)
+// stack3.push(40)
+// stack3.display()
+// console.log(stack3.peek())
+// console.log(stack3.pop())
+// stack3.display()
+// stack3.push(50)
+// stack3.push(60)
+// stack3.push(70)
+// stack3.display()
+
+
+class Stack4 {
+    constructor(size){
+        this.items = []
+        this.size = size
+    }
+
+    push(element){
+        if(this.items.length >= this.size){
+            console.log('Stack Overflow')
+            return
+        }
+        this.items.push(element);
+    }
+
+    pop(element){
+        if(this.items.length == 0){
+            console.log('Stack underflow')
+            return
+        }
+        this.items.pop();
+    }
+
+    peek(){
+        if(this.items.length == 0){
+            console.log('Stack is empty')
+            return
+        }
+        return this.items[this.items.length - 1]
+    }
+}
+
+// const stack4 = new Stack4(5)
+// stack4.push(10)
+// stack4.push(20)
+// stack4.push(30)
+// stack4.push(40)
+// stack4.push(50)
+// stack4.peek()
+// stack4.pop()
+// console.log('stack itmes: ', stack4.items)
