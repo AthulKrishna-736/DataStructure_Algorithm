@@ -159,12 +159,12 @@ class SimpleHashTable1 {
 
 const table2 = new SimpleHashTable1(10)
 
-// table2.set('ca', 'athul')
-// table2.set('81', 'amal')
-// table2.set('b', 'ziyadh')
-// table2.set('2123221', 'salim')
-// table2.display()
-// console.log(table2.get('ca'))
+table2.set('ca', 'athul')
+table2.set('81', 'amal')
+table2.set('b', 'ziyadh')
+table2.set('2123221', 'salim')
+table2.display()
+console.log(table2.get('ca'))
 
 class HashTable1 {
   constructor(size) {
@@ -224,3 +224,7 @@ class HashTable1 {
 
 const table3 = new HashTable1()
 
+table3.set('s','sample value')
+table3.set('bsd', 'check the value')
+table3.get('bsd')
+table3.display()
