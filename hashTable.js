@@ -228,3 +228,67 @@ table3.set('s','sample value')
 table3.set('bsd', 'check the value')
 table3.get('bsd')
 table3.display()
+
+
+class HashTable2 {
+  constructor(size) {
+    this.table = new Array(size)
+    this.size = size
+  }
+
+  hash(key) {
+    key = String(key)
+    let total = 0
+    for (let i = 0; i < key.length; i++) {
+      total += key.charCodeAt(i)
+    }
+    return total % this.size
+  }
+
+  set(key, value) {
+    const index = this.hash(key)
+    if (!this.table[index]) {
+      this.table[index] = []
+    }
+    const existingElem = this.table[index].find(item => item[0] == key)
+    if (existingElem) {
+      existingElem[1] = value
+    } else {
+      this.table[index].push([key, value])
+    }
+  }
+
+  get(key) {
+    const index = this.hash(key)
+    const bucket = this.table[index]
+
+    if (bucket) {
+      const found = bucket.find(item => item[0] === key)
+      return found ? found[1] : undefined
+    }
+    return undefined
+  }
+
+  remove(key) {
+    const index = this.hash(key)
+    const bucket = this.table[index]
+    if (bucket) {
+      this.table[index] = bucket.filter(item => item[0] !== key)
+    }
+  }
+
+  display() {
+    for (let i = 0; i < this.table.length; i++) {
+      if (this.table[i]) {
+        console.log(i, this.table[i])
+      }
+    }
+  }
+}
+
+const table4 = new HashTable2()
+
+table3.set('s','sample value')
+table3.set('bsd', 'check the value')
+table3.get('bsd')
+table3.display()
