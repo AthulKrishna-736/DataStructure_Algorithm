@@ -226,6 +226,25 @@ function quickSort1(arr) {
 }
 
 
+function quickSort2(arr){
+    if(arr.length < 2){
+        return arr
+    }
+
+    let pivot = arr[arr.length - 1]
+    let left = []
+    let right = []
+    for(let i = 0; i<arr.length - 1; i++){
+        if(arr[i] < pivot){
+            left.push(arr[i])
+        } else {
+            right.push(arr[i]) 
+        }
+    }
+    return [...quickSort2(left), ...pivot, ...quickSort2(right)]
+}
+
+console.log(quickSort2([4,6,2,87,2,5,8]))
 
 function mergeSort(arr) {
     if (arr.length <= 1) return arr;
