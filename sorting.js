@@ -287,10 +287,10 @@ function quickSort2(arr){
             right.push(arr[i]) 
         }
     }
-    return [...quickSort2(left), ...pivot, ...quickSort2(right)]
+    return [...quickSort2(left), pivot, ...quickSort2(right)]
 }
 
-console.log(quickSort2([4,6,2,87,2,5,8]))
+// console.log(quickSort2([4,6,2,87,2,5,8]))
 
 
 function quickSort3(arr){
@@ -417,3 +417,28 @@ function merge3(left, right) {
 }
 
 // console.log(mergeSort3([1,6,2,7,3,7,2]))
+
+function mergeSort5(arr){
+    if(arr.length < 2){
+        return arr
+    }
+    const mid = Math.floor(arr.length/2)
+    const left = arr.slice(0, mid)
+    const right = arr.slice(mid)
+
+    return merge5(mergeSort5(left), mergeSort(right))
+}
+
+function merge5(left, right){
+    const sortedArr = []
+    while(left.length && right.length){
+        if(left[0] <= right[0]){
+            sortedArr.push(left.shift())
+        } else {
+            sortedArr.push(right.shift())
+        }
+    }
+    return [...sortedArr, ...left, ...right]
+}
+
+// console.log(mergeSort5([5,3,6,1,6,7,1,4]))
