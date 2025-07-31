@@ -107,7 +107,7 @@ function power(n, p) {
     }
     return n * power(n, p - 1);
 }
-// console.log(power(2, 3))
+// console.log(power(2, 10))
 // console.log(power(3, 3))
 
 
@@ -197,8 +197,8 @@ function sumofArray(arr, index = 0, sum = 0) {
     return sumofArray(arr, index + 1, sum)
 }
 
-// console.log(sumofArray([1,2,3,4,5,6,7,8,9]));
-// console.log(sumofArray([3,4,5,6]));
+console.log(sumofArray([1,2,3,4,5,6,7,8,9]));
+console.log(sumofArray([3,4,5,6]));
 
 
 function maxElem(arr, index = 0, max = -Infinity, secMax = -Infinity) {
@@ -218,8 +218,8 @@ function maxElem(arr, index = 0, max = -Infinity, secMax = -Infinity) {
 }
 
 
-// console.log(maxElem([1,3,6,2,5,8,7]))
-// console.log(maxElem([3,5,11,6,7,12]))
+console.log(maxElem([1,3,6,2,5,8,7]))
+console.log(maxElem([3,5,11,6,7,12]))
 
 function isPallindrome(str, index = 0, end) {
     if (index == end) {
