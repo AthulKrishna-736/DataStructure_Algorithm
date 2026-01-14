@@ -224,7 +224,7 @@ class HashTable1 {
 
 const table3 = new HashTable1()
 
-table3.set('s','sample value')
+table3.set('s', 'sample value')
 table3.set('bsd', 'check the value')
 table3.get('bsd')
 table3.display()
@@ -294,26 +294,26 @@ const table4 = new HashTable2()
 // table4.display()
 
 class HashTable3 {
-  constructor(size){
+  constructor(size) {
     this.table = []
     this.size = size
   }
 
-  hash(key){
+  hash(key) {
     key = String(key)
     let total = 0
-    for(let i = 0; i<key.length; i++){
+    for (let i = 0; i < key.length; i++) {
       total += key.charCodeAt(i)
     }
 
     return total % this.size
   }
 
-  get(key){
+  get(key) {
     const index = this.hash(key)
     const bucket = this.table[index]
 
-    if(!bucket){
+    if (!bucket) {
       return null
     } else {
       const found = bucket.find(item => item[0] == key)
@@ -322,35 +322,35 @@ class HashTable3 {
     }
   }
 
-  set(key, value){
+  set(key, value) {
     const index = this.hash(key)
-    if(!this.table[index]){
+    if (!this.table[index]) {
       this.table[index] = []
     }
 
     const existElem = this.table[index].find(item => item[0] == key)
 
-    if(existElem){
+    if (existElem) {
       existElem[1] = value
     } else {
       this.table[index].push([key, value])
     }
   }
 
-  remove(key){
+  remove(key) {
     let index = this.hash(key)
     const bucket = this.table[index]
 
-    if(bucket){
+    if (bucket) {
       this.table[index] = bucket.filter(item => item[0] != key)
     }
   }
 
-  display(){
-    if(!this.table){
+  display() {
+    if (!this.table) {
       return null
     } else {
-      for(let i = 0; i<this.table.length; i++){
+      for (let i = 0; i < this.table.length; i++) {
         console.log(i, this.table[i])
       }
     }
@@ -359,14 +359,50 @@ class HashTable3 {
 
 const ht = new HashTable3(10);
 
-ht.set("apple", 100);
-ht.set("banana", 200);
-ht.set("grape", 300);
-ht.set("orange", 400);
-ht.set("apple", 500);  
-ht.set("grape", 600);  
-ht.set("mango", 700);
-console.log(ht.get('apple'))
-ht.display()
-ht.remove('apple')
-ht.display()
+// ht.set("apple", 100);
+// ht.set("banana", 200);
+// ht.set("grape", 300);
+// ht.set("orange", 400);
+// ht.set("apple", 500);  
+// ht.set("grape", 600);  
+// ht.set("mango", 700);
+// console.log(ht.get('apple'))
+// ht.display()
+// ht.remove('apple')
+// ht.display()
+
+class HashTable {
+  constructor(size) {
+    this.table = [];
+    this.size = size;
+  }
+
+  hash(key) {
+    key = String(key);
+    let total = 0;
+    for (let i = 0; i < key.length; i++) {
+      total += key.charCodeAt(i);
+    }
+
+    return total % this.size;
+  }
+
+  set(key, value) {
+    const index = this.hash(key);
+
+    if (!this.table[index]) {
+      this.table[index] = []
+    }
+    this.table[index].push([key, value]);
+  }
+
+  get(key) {
+    const index = this.hash(key);
+
+    if (!this.table[index]) {
+      return 'no key present';
+    } else {
+      this.table[index].find()
+    }
+  }
+}

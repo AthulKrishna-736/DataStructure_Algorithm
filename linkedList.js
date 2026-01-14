@@ -1156,7 +1156,7 @@ const list8 = new DoubleLinkedList1()
 
 
 class Node9 {
-    constructor(value){
+    constructor(value) {
         this.value = value
         this.next = null
     }
@@ -1164,19 +1164,19 @@ class Node9 {
 
 
 class LinkedList7 {
-    constructor(){
+    constructor() {
         this.head = null
         this.tail = null
         this.size = 0
     }
 
-    isEmpty(){
+    isEmpty() {
         return this.size === 0
     }
 
-    prepend(value){
+    prepend(value) {
         const node = new Node9(value)
-        if(!this.head){
+        if (!this.head) {
             this.head = node
             this.tail = node
         } else {
@@ -1186,9 +1186,9 @@ class LinkedList7 {
         this.size++
     }
 
-    append(value){
+    append(value) {
         const node = new Node9(value)
-        if(!this.head){
+        if (!this.head) {
             this.head = node
             this.tail = node
         } else {
@@ -1198,36 +1198,36 @@ class LinkedList7 {
         this.size++
     }
 
-    deleteNode(value){
-        if(!this.head){
+    deleteNode(value) {
+        if (!this.head) {
             return null
-        } else if(this.head.value === value){
+        } else if (this.head.value === value) {
             this.head = this.head.next
-            if(!this.head) this.tail = null
+            if (!this.head) this.tail = null
             this.size--
             return
         } else {
             let curr = this.head;
-            while(curr.next && curr.next.value !== value){
+            while (curr.next && curr.next.value !== value) {
                 curr = curr.next
             }
-            if(curr.next){
-                if(curr.next == this.tail){
+            if (curr.next) {
+                if (curr.next == this.tail) {
                     this.tail = curr
                 }
                 curr.next = curr.next.next
             }
             this.size--
         }
-    }  
+    }
 
-    printList(){
-        if(!this.head){
+    printList() {
+        if (!this.head) {
             return null
         } else {
             let curr = this.head
             let val = ''
-            while(curr.next){
+            while (curr.next) {
                 val += curr.value + ' -> '
                 curr = curr.next
             }
@@ -1235,25 +1235,25 @@ class LinkedList7 {
         }
     }
 
-    reverse(){
-        if(!this.head){
+    reverse() {
+        if (!this.head) {
             return null
         } else {
             let prev = null
             let curr = this.head
             this.tail = this.head
 
-            while(curr){
+            while (curr) {
                 let next = curr.next
                 curr.next = prev
                 prev = curr
                 curr = next
             }
-            
+
             this.head = prev
         }
     }
-    
+
 }
 
 // const list9 = new LinkedList7()
@@ -1273,8 +1273,8 @@ class LinkedList7 {
 // list9.printList()
 
 
-class Node10{
-    constructor(value){
+class Node10 {
+    constructor(value) {
         this.value = value
         this.prev = null
         this.next = null
@@ -1282,19 +1282,19 @@ class Node10{
 }
 
 class DoubleLinkedList2 {
-    constructor(){
+    constructor() {
         this.head = null
         this.tail = null
         this.size = 0
     }
 
-    getSize(){
+    getSize() {
         return this.size
     }
 
-    prepend(value){
+    prepend(value) {
         const node = new Node10(value)
-        if(!this.head){
+        if (!this.head) {
             this.head = node
             this.tail = node
         } else {
@@ -1305,9 +1305,9 @@ class DoubleLinkedList2 {
         this.size++
     }
 
-    append(value){
+    append(value) {
         const node = new Node10(value)
-        if(!this.head){
+        if (!this.head) {
             this.head = node
             this.tail = node
         } else {
@@ -1318,13 +1318,13 @@ class DoubleLinkedList2 {
         this.size++
     }
 
-    reverse(){
-        if(!this.head || !this.head.next) return;
+    reverse() {
+        if (!this.head || !this.head.next) return;
 
         let curr = this.head
         let temp = null
 
-        while(curr){
+        while (curr) {
             temp = curr.prev
             curr.prev = curr.next
             curr.next = temp
@@ -1339,12 +1339,62 @@ class DoubleLinkedList2 {
 
 
 const list10 = new DoubleLinkedList2()
-list10.append(10)
-list10.append(12)
-list10.append(13)
-list10.append(13)
-list10.prepend(25)
-list10.prepend(206)
-list10.prepend(208)
-list10.prepend(200)
-console.log(list10.head)
+// list10.append(10)
+// list10.append(12)
+// list10.append(13)
+// list10.append(13)
+// list10.prepend(25)
+// list10.prepend(206)
+// list10.prepend(208)
+// list10.prepend(200)
+// console.log(list10.head)
+
+
+class Node11 {
+    constructor(val) {
+        this.value = val;
+        this.next = null;
+    }
+}
+
+class LinkedList12 {
+    constructor() {
+        this.head = null
+    }
+
+    append(val) {
+        const node = new Node11(val);
+        if (this.head == null) {
+            this.head = node;
+        } else {
+            let curr = this.head;
+
+            while (curr.next) {
+                curr = curr.next;
+            }
+
+            curr.next = node;
+        }
+    }
+
+    prepend(val) {
+        const node = new Node11(val);
+        if (this.head == null) {
+            this.head = node;
+        } else {
+            let curr = this.head;
+            node.next = curr;
+            this.head = curr;
+        }
+    }
+
+    printList() {
+        let curr = this.head;
+        let res = ' ';
+        while (curr) {
+            res += curr.value;
+            curr = curr.next;
+        }
+        console.log(res);
+    }
+}
