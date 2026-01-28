@@ -132,4 +132,4 @@ function findTarget1(arr, target, left, right){
     }
 }
 
-// console.log(find3([1,2,3,4,5], 4))
+console.log(findTarget1([1,2,3,4,5], 40, 0, 5))

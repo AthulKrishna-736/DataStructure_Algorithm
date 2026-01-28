@@ -371,15 +371,53 @@ const ht = new HashTable3(10);
 // ht.remove('apple')
 // ht.display()
 
-class HashTable {
+// class HashTable {
+//   constructor(size) {
+//     this.table = [];
+//     this.size = size;
+//   }
+
+//   hash(key) {
+//     key = String(key);
+//     let total = 0;
+//     for (let i = 0; i < key.length; i++) {
+//       total += key.charCodeAt(i);
+//     }
+
+//     return total % this.size;
+//   }
+
+//   set(key, value) {
+//     const index = this.hash(key);
+
+//     if (!this.table[index]) {
+//       this.table[index] = []
+//     }
+//     this.table[index].push([key, value]);
+//   }
+
+//   get(key) {
+//     const index = this.hash(key);
+
+//     if (!this.table[index]) {
+//       return 'no key present';
+//     } else {
+//       this.table[index].find()
+//     }
+//   }
+// }
+
+class HashTable4 {
   constructor(size) {
-    this.table = [];
     this.size = size;
+    this.table = [];
   }
 
   hash(key) {
-    key = String(key);
+    key = key.toString();
+
     let total = 0;
+
     for (let i = 0; i < key.length; i++) {
       total += key.charCodeAt(i);
     }
@@ -387,22 +425,28 @@ class HashTable {
     return total % this.size;
   }
 
-  set(key, value) {
+  insert(key, value) {
     const index = this.hash(key);
 
-    if (!this.table[index]) {
-      this.table[index] = []
+    if (!table[index]) {
+      table[index] = [];
     }
-    this.table[index].push([key, value]);
+    table[index].push([key, value]);
   }
 
   get(key) {
     const index = this.hash(key);
 
-    if (!this.table[index]) {
-      return 'no key present';
+    if (!table[index]) {
+      return 'no value with this key found'
     } else {
-      this.table[index].find()
+      return table[index].find((k) => key == k[0]);
     }
   }
 }
+
+const h1 = new HashTable4(10);
+
+h1.insert('sample', 'athul')
+console.log(h1.get('sa'))
+console.log(h1.get('sample'))
