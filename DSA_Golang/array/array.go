@@ -4,6 +4,7 @@ import "fmt"
 
 func LearnArrays() {
 	basicArrays()
+	totalSum()
 }
 
 func basicArrays() {
@@ -28,4 +29,21 @@ func basicArrays() {
 	index = 2
 	arr = append(arr[:index], arr[index+1:]...)
 	fmt.Printf("After Delete: %v\n", arr)
+}
+
+func totalSum() {
+	arr := []int{1, 2, 3, 4, 5}
+	sum := 0
+
+	for i := 0; i < len(arr); i++ {
+		sum += arr[i]
+	}
+
+	fmt.Printf("Total Sum Normal For loop: %d\n", sum)
+
+	for _, val := range arr {
+		sum += val
+	}
+
+	fmt.Printf("Total sum with range for loop: %d\n", sum)
 }
