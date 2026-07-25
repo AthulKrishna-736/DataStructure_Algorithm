@@ -9,7 +9,8 @@ func LearnArrays() {
 	// findMin()
 	// countEvenOdd()
 	// findElements()
-	insetElemnentAtPos()
+	// insertElemnentAtPos()
+	deleteElementAtPos()
 }
 
 func basicArrays() {
@@ -122,25 +123,43 @@ func findElements() {
 	fmt.Printf("Element not found")
 }
 
-func insetElemnentAtPos() {
+func insertElemnentAtPos() {
 	arr := []int{1, 2, 3, 4, 5, 6}
 	pos := 3
 	val := 10
 
-	if pos >= len(arr) {
-		arr = append(arr, val)
-	} else {
-		arr = append(arr, 0)
+	if pos < 0 || pos > len(arr) {
+		fmt.Print("Invalid index pos")
+		return
 	}
 
-	for i := len(arr) - 1; i >= 0; i-- {
-		if pos == i {
-			arr[i+1] = arr[i]
-			arr[i] = val
-		} else if pos <= i {
-			arr[i+1] = arr[i]
-		}
+	if pos == len(arr) {
+		arr = append(arr, val)
+		return
 	}
+
+	arr = append(arr, 0)
+
+	for i := len(arr) - 1; i > pos; i-- {
+		arr[i] = arr[i-1]
+	}
+
+	arr[pos] = val
 
 	fmt.Printf("After inserting Element: %v", arr)
+}
+
+func deleteElementAtPos() {
+	arr := []int{1, 2, 3, 4, 5, 6}
+	pos := 3
+
+	if pos < 0 || pos >= len(arr) {
+		fmt.Print("Invalid index pos")
+		return
+	}
+
+	for i := pos; i < len(arr)-1; i++ {
+		arr[i] = arr[i+1]
+	}
+
 }
