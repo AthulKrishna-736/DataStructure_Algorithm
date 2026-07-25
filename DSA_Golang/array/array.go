@@ -162,4 +162,7 @@ func deleteElementAtPos() {
 		arr[i] = arr[i+1]
 	}
 
+	arr = arr[:len(arr)-1]
+
+	fmt.Println("After delete: ", arr)
 }
