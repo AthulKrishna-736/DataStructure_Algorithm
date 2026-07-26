@@ -10,7 +10,13 @@ func LearnArrays() {
 	// countEvenOdd()
 	// findElements()
 	// insertElemnentAtPos()
-	deleteElementAtPos()
+	// deleteElementAtPos()
+	// reverseArray()
+	// reverseArray1()
+	// copyArray()
+	// countOccurrences()
+	// frequencyOfElements()
+	firstRepeatingElement()
 }
 
 func basicArrays() {
@@ -165,4 +171,120 @@ func deleteElementAtPos() {
 	arr = arr[:len(arr)-1]
 
 	fmt.Println("After delete: ", arr)
+}
+
+// in place
+func reverseArray() {
+	arr := []int{1, 2, 3, 4, 5, 6}
+
+	if len(arr) == 0 {
+		fmt.Print("Empty array")
+		return
+	}
+
+	n := len(arr)
+
+	for i := 0; i <= (n-1)/2; i++ {
+		temp := arr[i]
+		arr[i] = arr[n-1-i]
+		arr[n-1-i] = temp
+	}
+
+	fmt.Println("Reversed arr: ", arr)
+}
+
+// two pointer
+func reverseArray1() {
+	arr := []int{1, 2, 3, 4, 5, 6}
+
+	if len(arr) == 0 {
+		fmt.Print("Empty array")
+		return
+	}
+
+	left := 0
+	right := len(arr) - 1
+
+	for left < right {
+		arr[left], arr[right] = arr[right], arr[left]
+		left++
+		right--
+	}
+
+	fmt.Println("Reversed Arr: ", arr)
+}
+
+func copyArray() {
+	arr := []int{1, 2, 3, 4, 5, 6}
+
+	if len(arr) == 0 {
+		fmt.Print("Empty array")
+		return
+	}
+
+	arr1 := make([]int, len(arr))
+
+	for i := 0; i < len(arr); i++ {
+		arr1[i] = arr[i]
+	}
+
+	fmt.Println("Copied Arr: ", arr1)
+}
+
+func countOccurrences() {
+	arr := []int{1, 2, 3, 2, 4, 2, 5}
+	target := 2
+
+	count := 0
+
+	for i := 0; i < len(arr); i++ {
+		if arr[i] == target {
+			count++
+		}
+	}
+
+	fmt.Println("Total Occurrences: ", count)
+}
+
+func frequencyOfElements() {
+	arr := []int{1, 2, 3, 2, 4, 2, 5}
+
+	if len(arr) == 0 {
+		fmt.Println("Empty array")
+		return
+	}
+
+	frequency := map[int]int{}
+
+	for i := 0; i < len(arr); i++ {
+		if _, ok := frequency[arr[i]]; !ok {
+			frequency[arr[i]] = 1
+		} else {
+			frequency[arr[i]]++
+		}
+	}
+
+	fmt.Println("Frequency: ", frequency)
+}
+
+func firstRepeatingElement() {
+	arr := []int{10, 5, 3, 4, 3, 5, 6}
+
+	if len(arr) == 0 {
+		fmt.Print("Empty array")
+		return
+	}
+
+	elementsMap := make(map[int]bool)
+
+	for i := 0; i < len(arr); i++ {
+		if _, ok := elementsMap[arr[i]]; !ok {
+			elementsMap[arr[i]] = true
+		} else {
+			fmt.Println("First repeating element: ", arr[i])
+			return
+		}
+	}
+
+	fmt.Println("No repeating elements")
 }
