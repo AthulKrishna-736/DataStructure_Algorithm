@@ -17,7 +17,8 @@ func LearnArrays() {
 	// countOccurrences()
 	// frequencyOfElements()
 	// firstRepeatingElement()
-	firstNonRepeatingElement()
+	// firstNonRepeatingElement()
+	removeDuplicates()
 }
 
 func basicArrays() {
@@ -316,4 +317,33 @@ func firstNonRepeatingElement() {
 	}
 
 	fmt.Print("No Non repeating elements")
+}
+
+func removeDuplicates() {
+	arr := []int{10, 5, 3, 4, 3, 5, 6}
+
+	if len(arr) == 0 {
+		fmt.Print("empty array")
+		return
+	}
+
+	elementsMap := make(map[int]bool)
+
+	for i := 0; i < len(arr); i++ {
+		if _, ok := elementsMap[arr[i]]; !ok {
+			elementsMap[arr[i]] = true
+			fmt.Println("map stored", elementsMap)
+			fmt.Println("emelemtn: ", arr[i])
+		} else {
+			fmt.Printf("duplicate found: %d \n ", arr[i])
+
+			for j := i; j < len(arr)-1; j++ {
+				arr[j] = arr[j+1]
+			}
+
+			arr = arr[:len(arr)-1]
+		}
+	}
+
+	fmt.Print("Array after removing duplicates: ", arr)
 }
