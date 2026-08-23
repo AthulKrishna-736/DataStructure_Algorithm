@@ -18,8 +18,9 @@ func LearnArrays() {
 	// frequencyOfElements()
 	// firstRepeatingElement()
 	// firstNonRepeatingElement()
-	removeDuplicates()
-	removeDuplicates1()
+	// removeDuplicates()
+	// removeDuplicates1()
+	secLargest()
 }
 
 func basicArrays() {
@@ -369,4 +370,28 @@ func removeDuplicates1() {
 	arr = arr[:index]
 
 	fmt.Println("result arr: ", arr)
+}
+
+func secLargest() {
+	arr := []int{10, 5, 20, 8, 15}
+
+	if len(arr) < 2 {
+		fmt.Print("cant find sec largest")
+		return
+	}
+
+	max := arr[0]
+	secMax := arr[1]
+
+	for i := 2; i < len(arr); i++ {
+		if arr[i] > max {
+			secMax = max
+			max = arr[i]
+		} else if arr[i] > secMax {
+			secMax = arr[i]
+		}
+	}
+
+	fmt.Println("sec max: ", secMax)
+
 }
