@@ -20,7 +20,8 @@ func LearnArrays() {
 	// firstNonRepeatingElement()
 	// removeDuplicates()
 	// removeDuplicates1()
-	secLargest()
+	// secLargest()
+	twoSum()
 }
 
 func basicArrays() {
@@ -394,4 +395,20 @@ func secLargest() {
 
 	fmt.Println("sec max: ", secMax)
 
+}
+
+func twoSum() {
+	arr := []int{-2, -7, 11, 15}
+	target := -9
+
+	elemMap := make(map[int]int)
+
+	for i := 0; i < len(arr); i++ {
+		if index, ok := elemMap[target-arr[i]]; !ok {
+			elemMap[arr[i]] = i
+		} else {
+			fmt.Print("indexes: ", i, index)
+			return
+		}
+	}
 }
