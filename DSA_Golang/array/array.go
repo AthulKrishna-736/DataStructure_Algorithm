@@ -21,7 +21,7 @@ func LearnArrays() {
 	// removeDuplicates()
 	// removeDuplicates1()
 	// secLargest()
-	twoSum()
+	// twoSum()
 }
 
 func basicArrays() {
