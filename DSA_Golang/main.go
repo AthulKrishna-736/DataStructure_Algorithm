@@ -8,4 +8,5 @@ import (
 func main() {
 	array.LearnArrays()
 	slidingwindow.ConstantWindow([]int{-1, 2, 3, 3, 4, 5, -1}, 4)
+	slidingwindow.VariableWindow([]int{2, 5, 1, 7, 10}, 14)
 }
