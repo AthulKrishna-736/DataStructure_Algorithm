@@ -29,3 +29,27 @@ func ConstantWindow(nums []int, k int) {
 
 	fmt.Println("highest sum: ", maxSum)
 }
+
+func FindMaxAverage(nums []int, k int) {
+	maxAvg := 0.0
+	for i := 0; i <= len(nums)-k; i++ {
+		sum := 0
+		for j := i; j < k+i; j++ {
+			sum += nums[j]
+		}
+
+		maxAvg = max(maxAvg, float64(sum)/float64(k))
+	}
+
+	fmt.Println("max avg: ", maxAvg)
+}
+
+// func FindMaxAverage1(nums []int, k int) {
+// 	maxAvg := 0.0
+// 	l := 0
+// 	r := 0
+
+// 	for r < len(nums) {
+
+// 	}
+// }
