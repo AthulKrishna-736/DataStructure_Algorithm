@@ -1,4 +1,4 @@
-# 🚀✨ Mastering DSA in JavaScript 💻⚡  
+# 🚀✨ Mastering DSA in JavaScript & Go 💻⚡  
 
 Welcome to the **ultimate** JavaScript **Data Structures & Algorithms (DSA)** repository! 🎯  
 If you're looking to **crack coding interviews, improve problem-solving skills,** or just **level up** your JavaScript game, you're in the right place! 🏆  
