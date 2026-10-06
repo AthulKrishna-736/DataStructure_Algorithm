@@ -11,4 +11,6 @@ func main() {
 	slidingwindow.VariableWindowBruteForce([]int{2, 5, 1, 7, 10}, 14)
 	slidingwindow.VariableWindowBetterSolution([]int{2, 5, 1, 7, 10}, 14)
 	slidingwindow.FindMaxAverage([]int{1, 12, -5, -6, 50, 3}, 4)
+	slidingwindow.FindMaxAverage1([]int{5}, 1)
+	slidingwindow.FindMaxAverage2([]int{1, 12, -5, -6, 50, 3}, 4)
 }
