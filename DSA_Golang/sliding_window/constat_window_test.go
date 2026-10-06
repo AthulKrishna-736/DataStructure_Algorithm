@@ -21,3 +21,22 @@ func Test1343(t *testing.T) {
 		}
 	}
 }
+
+func Test1456(t *testing.T) {
+	stringArray := []string{
+		"abciiidef",
+		"aeiou",
+		"leetcode",
+	}
+
+	window := []int{3, 2, 3}
+	expected := []int{3, 2, 2}
+
+	for i := range stringArray {
+		got := MaxVowels1(stringArray[i], window[i])
+
+		if got != expected[i] {
+			t.Errorf("expected %d, got %d", expected[i], got)
+		}
+	}
+}

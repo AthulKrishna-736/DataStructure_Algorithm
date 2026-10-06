@@ -154,3 +154,59 @@ func NumOfSubarrays1(arr []int, k int, threshold int) int {
 
 	return count
 }
+
+// 1456 brute force
+func MaxVowels(s string, k int) int {
+	maxVowels := 0
+
+	for i := 0; i <= len(s)-k; i++ {
+		count := 0
+		for j := i; j < k+i; j++ {
+			if s[j] == 'a' || s[j] == 'e' || s[j] == 'i' || s[j] == 'o' || s[j] == 'u' {
+				count++
+			}
+		}
+
+		maxVowels = max(maxVowels, count)
+	}
+
+	return maxVowels
+}
+
+// 1456 better solution also optimal solution
+func MaxVowels1(s string, k int) int {
+	maxVowels := 0
+	count := 0
+	l := 0
+	r := k - 1
+
+	/*
+	   Extract repeated vowel-checking logic into a helper function
+	   to improve code readability and maintainability.
+	*/
+
+	for i := 0; i <= r; i++ {
+		if s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' || s[i] == 'u' {
+			count++
+		}
+	}
+
+	maxVowels = count
+
+	for r < len(s)-1 {
+		if s[l] == 'a' || s[l] == 'e' || s[l] == 'i' || s[l] == 'o' || s[l] == 'u' {
+			count--
+		}
+
+		l++
+		r++
+
+		if s[r] == 'a' || s[r] == 'e' || s[r] == 'i' || s[r] == 'o' || s[r] == 'u' {
+			count++
+		}
+
+		maxVowels = max(maxVowels, count)
+	}
+
+	return maxVowels
+}
