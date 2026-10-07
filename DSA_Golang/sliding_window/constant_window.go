@@ -210,3 +210,65 @@ func MaxVowels1(s string, k int) int {
 
 	return maxVowels
 }
+
+// 1052. Grumpy Bookstore Owner - brute force
+func MaxSatisfied(customers []int, grumpy []int, minutes int) int {
+	maxSum := 0
+	satisfied := 0
+	for i := 0; i < len(customers); i++ {
+		sum := 0
+
+		if grumpy[i] == 0 {
+			satisfied += customers[i]
+		}
+
+		for j := i; j < minutes+i && j < len(customers); j++ {
+			if grumpy[j] == 1 {
+				sum += customers[j]
+			}
+		}
+
+		maxSum = max(maxSum, sum)
+	}
+
+	return maxSum + satisfied
+}
+
+// 1052 better solution
+func MaxSatisfied1(customers []int, grumpy []int, minutes int) int {
+	maxSum := 0
+	sum := 0
+	satisfied := 0
+
+	l := 0
+	r := minutes - 1
+
+	for i := 0; i <= r; i++ {
+		if grumpy[i] == 1 {
+			sum += customers[i]
+		} else {
+			satisfied += customers[i]
+		}
+	}
+
+	maxSum = sum
+
+	for r < len(customers)-1 {
+		if grumpy[l] == 1 {
+			sum -= customers[l]
+		}
+
+		l++
+		r++
+
+		if grumpy[r] == 1 {
+			sum += customers[r]
+		} else {
+			satisfied += customers[r]
+		}
+
+		maxSum = max(maxSum, sum)
+	}
+
+	return satisfied + maxSum
+}

@@ -40,3 +40,27 @@ func Test1456(t *testing.T) {
 		}
 	}
 }
+
+func Test1052(t *testing.T) {
+	customers := [][]int{
+		{1, 0, 1, 2, 1, 1, 7, 5},
+		{1},
+	}
+
+	grumpy := [][]int{
+		{0, 1, 0, 1, 0, 1, 0, 1},
+		{0},
+	}
+
+	minutes := []int{3, 1}
+
+	expected := []int{16, 1}
+
+	for i := range customers {
+		got := MaxSatisfied1(customers[i], grumpy[i], minutes[i])
+
+		if got != expected[i] {
+			t.Errorf("expected %d, got %d", expected[i], got)
+		}
+	}
+}
