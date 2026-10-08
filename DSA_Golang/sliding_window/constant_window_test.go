@@ -1,6 +1,9 @@
 package slidingwindow
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 func Test1343(t *testing.T) {
 	array := [][]int{
@@ -82,6 +85,31 @@ func Test1423(t *testing.T) {
 
 		if got != expected[i] {
 			t.Errorf("expected %d, got %d", expected[i], got)
+		}
+	}
+}
+
+func Test438(t *testing.T) {
+	words := []string{
+		"cbaebabacd",
+		"abab",
+	}
+
+	subword := []string{
+		"abc",
+		"ab",
+	}
+
+	expected := [][]int{
+		{0, 6},
+		{0, 1, 2},
+	}
+
+	for i := range words {
+		got := FindAnagrams(words[i], subword[i])
+
+		if !reflect.DeepEqual(got, expected[i]) {
+			t.Errorf("test case %d: expected %v, got %v", i+1, expected[i], got)
 		}
 	}
 }

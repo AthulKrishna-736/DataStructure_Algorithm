@@ -296,3 +296,33 @@ func MaxScore(cardPoints []int, k int) int {
 
 	return maxScore
 }
+
+// 438. Find All Anagrams in a String - brute force
+func FindAnagrams(s string, p string) []int {
+	anagrams := []int{}
+
+	alpha := [26]int{}
+	for i := 0; i < len(p); i++ {
+		alpha[p[i]-'a']++
+	}
+
+	for i := 0; i <= len(s)-len(p); i++ {
+		innerAlpha := [26]int{}
+		for j := i; j < len(p)+i; j++ {
+			innerAlpha[s[j]-'a']++
+		}
+
+		if alpha == innerAlpha {
+			anagrams = append(anagrams, i)
+		}
+	}
+
+	return anagrams
+}
+
+//  438 better solution
+func FindAnagrams1(s string, p string) []int {
+	anagrams := []int{}
+
+	return anagrams
+}
