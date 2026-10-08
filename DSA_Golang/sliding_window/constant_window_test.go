@@ -64,3 +64,24 @@ func Test1052(t *testing.T) {
 		}
 	}
 }
+
+func Test1423(t *testing.T) {
+	cardPoints := [][]int{
+		{1, 2, 3, 4, 5, 6, 1},
+		{2, 2, 2},
+		{9, 7, 7, 9, 7, 7, 9},
+		{100, 40, 17, 9, 73, 75},
+	}
+
+	k := []int{3, 2, 7, 3}
+
+	expected := []int{12, 4, 55, 248}
+
+	for i := range cardPoints {
+		got := MaxScore(cardPoints[i], k[i])
+
+		if got != expected[i] {
+			t.Errorf("expected %d, got %d", expected[i], got)
+		}
+	}
+}

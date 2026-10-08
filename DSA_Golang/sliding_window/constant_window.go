@@ -272,3 +272,27 @@ func MaxSatisfied1(customers []int, grumpy []int, minutes int) int {
 
 	return satisfied + maxSum
 }
+
+// 1423. Maximum Points You Can Obtain from Cards
+func MaxScore(cardPoints []int, k int) int {
+	maxScore := 0
+
+	lSum := 0
+	rSum := 0
+	for i := 0; i < k; i++ {
+		lSum += cardPoints[i]
+	}
+
+	maxScore = lSum
+
+	rIndex := len(cardPoints) - 1
+	for j := k - 1; j >= 0; j-- {
+		lSum -= cardPoints[j]
+		rSum += cardPoints[rIndex]
+		rIndex--
+
+		maxScore = max(maxScore, lSum+rSum)
+	}
+
+	return maxScore
+}
