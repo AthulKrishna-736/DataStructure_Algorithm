@@ -320,9 +320,50 @@ func FindAnagrams(s string, p string) []int {
 	return anagrams
 }
 
-//  438 better solution
+// 438 better solution
 func FindAnagrams1(s string, p string) []int {
 	anagrams := []int{}
 
+	pArr := [26]int{}
+	sArr := [26]int{}
+
+	if len(p) > len(s) {
+		return anagrams
+	}
+
+	// 1000 iterations => O(p)
+	for i := 0; i < len(p); i++ {
+		pArr[p[i]-'a']++
+	}
+
+	l := 0
+	r := len(p) - 1
+
+	// 1000 iterations => O(p)
+	for j := 0; j <= r; j++ {
+		sArr[s[j]-'a']++
+	}
+
+	if pArr == sArr { // 26 comparisons => O(1)
+		anagrams = append(anagrams, l)
+	}
+
+	// 10000 - 1000 = 9000 iterations => O(s-p)
+	// Total: O(p) + O(p) + O(s-p)
+	//      = O(2p + s - p)
+	//      = O(s + p)
+	//      = O(s) = O(n), since p <= s
+	for r < len(s)-1 {
+		sArr[s[l]-'a']--
+		l++
+		r++
+		sArr[s[r]-'a']++
+
+		if pArr == sArr { // 26 comparisons => O(1)
+			anagrams = append(anagrams, l)
+		}
+	}
+
 	return anagrams
+
 }

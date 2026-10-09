@@ -93,20 +93,23 @@ func Test438(t *testing.T) {
 	words := []string{
 		"cbaebabacd",
 		"abab",
+		"aaaaaaaaaa",
 	}
 
 	subword := []string{
 		"abc",
 		"ab",
+		"aaaaaaaaaaaaa",
 	}
 
 	expected := [][]int{
 		{0, 6},
 		{0, 1, 2},
+		{0},
 	}
 
 	for i := range words {
-		got := FindAnagrams(words[i], subword[i])
+		got := FindAnagrams1(words[i], subword[i])
 
 		if !reflect.DeepEqual(got, expected[i]) {
 			t.Errorf("test case %d: expected %v, got %v", i+1, expected[i], got)
