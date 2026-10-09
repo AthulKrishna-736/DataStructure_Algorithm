@@ -105,7 +105,7 @@ func Test438(t *testing.T) {
 	expected := [][]int{
 		{0, 6},
 		{0, 1, 2},
-		{0},
+		{},
 	}
 
 	for i := range words {
