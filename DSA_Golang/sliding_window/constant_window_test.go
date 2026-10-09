@@ -116,3 +116,17 @@ func Test438(t *testing.T) {
 		}
 	}
 }
+
+func Test568(t *testing.T) {
+	inputS1 := []string{"ab", "ab"}
+	inputS2 := []string{"eidbaooo", "eidboaoo"}
+
+	output := []bool{true, false}
+
+	for i := range inputS1 {
+		got := CheckInclusion1(inputS1[i], inputS2[i])
+		if got != output[i] {
+			t.Errorf("expected %t, got %t", output[i], got)
+		}
+	}
+}

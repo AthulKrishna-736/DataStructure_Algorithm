@@ -365,5 +365,67 @@ func FindAnagrams1(s string, p string) []int {
 	}
 
 	return anagrams
+}
 
+// 567. Permutation in String - brute force
+func CheckInclusion(s1 string, s2 string) bool {
+	if len(s1) > len(s2) {
+		return false
+	}
+
+	s1Arr := [26]int{}
+	for i := 0; i < len(s1); i++ {
+		s1Arr[s1[i]-'a']++
+	}
+
+	for i := 0; i < len(s2)-len(s1); i++ {
+		s2Arr := [26]int{}
+		for j := i; j < len(s1)+i; j++ {
+			s2Arr[s2[j]-'a']++
+		}
+
+		if s1Arr == s2Arr {
+			return true
+		}
+	}
+
+	return false
+}
+
+// 567 better solution
+func CheckInclusion1(s1 string, s2 string) bool {
+	if len(s1) > len(s2) {
+		return false
+	}
+
+	s1Arr := [26]int{}
+	s2Arr := [26]int{}
+
+	for i := 0; i < len(s1); i++ {
+		s1Arr[s1[i]-'a']++
+	}
+
+	l := 0
+	r := len(s1) - 1
+
+	for j := 0; j <= r; j++ {
+		s2Arr[s2[j]-'a']++
+	}
+
+	if s1Arr == s2Arr {
+		return true
+	}
+
+	for r < len(s2)-1 {
+		s2Arr[s2[l]-'a']--
+		l++
+		r++
+		s2Arr[s2[r]-'a']++
+
+		if s1Arr == s2Arr {
+			return true
+		}
+	}
+
+	return false
 }
