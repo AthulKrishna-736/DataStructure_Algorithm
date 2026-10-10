@@ -130,3 +130,23 @@ func Test568(t *testing.T) {
 		}
 	}
 }
+
+func Test2461(t *testing.T) {
+	input := [][]int{
+		{1, 5, 4, 2, 9, 9, 9},
+		{4, 4, 4},
+		{9, 9, 9, 1, 2, 3},
+	}
+
+	k := []int{3, 3, 3}
+
+	output := []int{15, 0, 12}
+
+	for i := range input {
+		got := MaximumSubarraySum1(input[i], k[i])
+
+		if got != output[i] {
+			t.Errorf("expected %d, got %d", output[i], got)
+		}
+	}
+}

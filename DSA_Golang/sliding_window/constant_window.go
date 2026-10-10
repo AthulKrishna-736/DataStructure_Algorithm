@@ -429,3 +429,63 @@ func CheckInclusion1(s1 string, s2 string) bool {
 
 	return false
 }
+
+// 2461. Maximum Sum of Distinct Subarrays With Length K - brute force
+func MaximumSubarraySum(nums []int, k int) int {
+	maxSum := 0
+
+	for i := 0; i < len(nums)-k; i++ {
+		sum := 0
+		hashMap := make(map[int]struct{})
+		for j := i; j < k+i; j++ {
+			if _, ok := hashMap[nums[j]]; ok {
+				break
+			}
+
+			hashMap[nums[j]] = struct{}{}
+			sum += nums[j]
+		}
+
+		maxSum = max(maxSum, sum)
+	}
+
+	return maxSum
+}
+
+// 2461 better solution
+func MaximumSubarraySum1(nums []int, k int) int {
+	maxSum := 0
+	sum := 0
+	hashMap := make(map[int]int)
+
+	l := 0
+	r := k - 1
+
+	for i := 0; i <= r; i++ {
+		hashMap[nums[i]]++
+		sum += nums[i]
+	}
+
+	if len(hashMap) == k {
+		maxSum = sum
+	}
+
+	for r < len(nums)-1 {
+		hashMap[nums[l]]--
+		if value := hashMap[nums[l]]; value == 0 {
+			delete(hashMap, nums[l])
+		}
+
+		sum -= nums[l]
+		l++
+		r++
+		sum += nums[r]
+		hashMap[nums[r]]++
+
+		if len(hashMap) == k {
+			maxSum = max(maxSum, sum)
+		}
+	}
+
+	return maxSum
+}
