@@ -489,3 +489,63 @@ func MaximumSubarraySum1(nums []int, k int) int {
 
 	return maxSum
 }
+
+// 2841. Maximum Sum of Almost Unique Subarray
+func MaxSum(nums []int, m int, k int) int {
+	maxSum := 0
+
+	for i := 0; i < len(nums)-k; i++ {
+		sum := 0
+		hashMap := make(map[int]int)
+
+		for j := i; j < k+i; j++ {
+			hashMap[nums[j]]++
+			sum += nums[j]
+		}
+
+		if len(hashMap) >= m {
+			maxSum = max(maxSum, sum)
+		}
+	}
+
+	return maxSum
+}
+
+// 2841 better solution
+func MaxSum1(nums []int, m int, k int) int {
+	maxSum := 0
+	sum := 0
+	hashMap := make(map[int]int)
+	l := 0
+	r := k - 1
+
+	for i := 0; i <= r; i++ {
+		hashMap[nums[i]]++
+		sum += nums[i]
+	}
+
+	if len(hashMap) >= m {
+		maxSum = sum
+	}
+
+	for r < len(nums)-1 {
+		hashMap[nums[l]]--
+
+		if val := hashMap[nums[l]]; val == 0 {
+			delete(hashMap, nums[l])
+		}
+
+		sum -= nums[l]
+		l++
+		r++
+		sum += nums[r]
+
+		hashMap[nums[r]]++
+
+		if len(hashMap) >= m {
+			maxSum = max(maxSum, sum)
+		}
+	}
+
+	return maxSum
+}

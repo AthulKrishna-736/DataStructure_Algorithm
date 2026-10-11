@@ -150,3 +150,25 @@ func Test2461(t *testing.T) {
 		}
 	}
 }
+
+func Test2841(t *testing.T) {
+	input := [][]int{
+		{2, 6, 7, 3, 1, 7},
+		{5, 9, 9, 2, 4, 5, 4},
+		{1, 2, 1, 2, 1, 2, 1},
+	}
+
+	m := []int{3, 1, 3}
+
+	k := []int{4, 3, 3}
+
+	output := []int{18, 23, 0}
+
+	for i := range input {
+		got := MaxSum1(input[i], m[i], k[i])
+
+		if got != output[i] {
+			t.Errorf("expected %d, got %d", output[i], got)
+		}
+	}
+}
