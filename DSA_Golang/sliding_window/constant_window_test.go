@@ -172,3 +172,17 @@ func Test2841(t *testing.T) {
 		}
 	}
 }
+
+func Test2269(t *testing.T) {
+	input := []int{240, 430043, 30003}
+	k := []int{2, 2, 3}
+	output := []int{2, 2, 1}
+
+	for i := range input {
+		got := DivisorSubstrings1(input[i], k[i])
+
+		if got != output[i] {
+			t.Errorf("expected %d, got %d", output[i], got)
+		}
+	}
+}

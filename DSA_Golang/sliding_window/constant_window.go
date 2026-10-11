@@ -1,6 +1,9 @@
 package slidingwindow
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 func ConstantWindow(nums []int, k int) {
 	l := 0
@@ -548,4 +551,57 @@ func MaxSum1(nums []int, m int, k int) int {
 	}
 
 	return maxSum
+}
+
+// 2269. Find the K-Beauty of a Number
+func DivisorSubstrings(num int, k int) int {
+	count := 0
+	str := strconv.Itoa(num)
+
+	for i := 0; i <= len(str)-k; i++ {
+		var s1 string
+		for j := i; j < k+i; j++ {
+			s1 += string(str[j])
+		}
+
+		n1, _ := strconv.Atoi(s1)
+		if n1 != 0 && num%n1 == 0 {
+			count++
+		}
+
+	}
+
+	return count
+}
+
+// 2269 better solution
+func DivisorSubstrings1(num int, k int) int {
+	count := 0
+	subString := ""
+
+	r := k - 1
+
+	str := strconv.Itoa(num)
+
+	for i := 0; i <= r; i++ {
+		subString += string(str[i])
+	}
+
+	digit, _ := strconv.Atoi(subString)
+	if digit != 0 && num%digit == 0 {
+		count++
+	}
+
+	for r < len(str)-1 {
+		subString = subString[1:]
+
+		r++
+		subString += string(str[r])
+
+		digit, _ := strconv.Atoi(subString)
+		if digit != 0 && num%digit == 0 {
+			count++
+		}
+	}
+	return count
 }
