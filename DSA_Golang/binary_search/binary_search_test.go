@@ -16,3 +16,22 @@ func TestBinarySearch(t *testing.T) {
 		}
 	}
 }
+
+func Test35(t *testing.T) {
+	input := [][]int{
+		{1, 3, 5, 6},
+		{1, 3, 5, 6},
+		{1, 3, 5, 6},
+	}
+	target := []int{5, 2, 7}
+	expected := []int{2, 1, 4}
+
+	for i := range target {
+		output := searchInsert(input[i], target[i])
+
+		if output != expected[i] {
+			t.Errorf("\nExpected: %d\nOutput: %d", expected[i], output)
+		}
+	}
+
+}
