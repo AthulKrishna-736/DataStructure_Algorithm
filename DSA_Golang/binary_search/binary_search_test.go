@@ -35,3 +35,25 @@ func Test35(t *testing.T) {
 	}
 
 }
+
+func Test34(t *testing.T) {
+	input := [][]int{
+		{5, 7, 7, 8, 8, 10},
+		{5, 7, 7, 8, 8, 10},
+		{},
+	}
+	target := []int{8, 6, 0}
+	expected := [][]int{
+		{3, 4},
+		{-1, -1},
+		{-1, -1},
+	}
+
+	for i := range target {
+		output := searchRange(input[i], target[i])
+
+		if output[0] != expected[i][0] || output[1] != expected[i][1] {
+			t.Errorf("\nExpected: %v\nOutput: %v", expected[i], output)
+		}
+	}
+}
