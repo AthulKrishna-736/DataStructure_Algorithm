@@ -57,3 +57,27 @@ func Test34(t *testing.T) {
 		}
 	}
 }
+
+func Test33(t *testing.T) {
+	input := [][]int{
+		{4, 5, 6, 7, 0, 1, 2},
+		{4, 5, 6, 7, 0, 1, 2},
+		{1},
+		{3, 1},
+		{1, 3},
+		{},
+	}
+	target := []int{0, 3, 1, 1, 3, 0}
+	expected := []int{4, -1, 0, 1, 1, -1}
+
+	for i := range target {
+		output := search(input[i], target[i])
+
+		if output != expected[i] {
+			t.Errorf(
+				"\nInput: %v\nTarget: %d\nExpected: %d\nOutput: %d",
+				input[i], target[i], expected[i], output,
+			)
+		}
+	}
+}
