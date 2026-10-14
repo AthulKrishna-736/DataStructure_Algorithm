@@ -81,3 +81,26 @@ func Test33(t *testing.T) {
 		}
 	}
 }
+
+func Test81(t *testing.T) {
+	input := [][]int{
+		{2, 5, 6, 0, 0, 1, 2},
+		{2, 5, 6, 0, 0, 1, 2},
+		{1, 0, 1, 1, 1},
+		{1, 1, 1, 1, 1},
+		{},
+	}
+	target := []int{0, 3, 0, 1, 0}
+	expected := []bool{true, false, true, true, false}
+
+	for i := range target {
+		output := searchRotated(input[i], target[i])
+
+		if output != expected[i] {
+			t.Errorf(
+				"\nInput: %v\nTarget: %d\nExpected: %v\nOutput: %v",
+				input[i], target[i], expected[i], output,
+			)
+		}
+	}
+}
