@@ -40,3 +40,42 @@ func TestLengthOfLongestSubstring(t *testing.T) {
 		}
 	}
 }
+
+func Test209(t *testing.T) {
+	// Additional edge cases for LeetCode 209
+	input := [][]int{
+		{1},             // Single element, valid
+		{1},             // Single element, invalid
+		{1, 2, 3, 4},    // Entire array is the minimum subarray
+		{1, 2, 3, 4},    // Minimum subarray at the end
+		{4, 3, 2, 1},    // Minimum subarray at the beginning
+		{2, 2, 2, 2},    // No valid subarray
+		{1, 1, 1, 10},   // Large element at the end
+		{10, 1, 1, 1},   // Large element at the beginning
+		{1, 2, 1, 2, 1}, // Multiple candidate subarrays
+		{5, 1, 1, 1, 5}, // Equal minimum-length candidates
+		{1, 1, 1, 1, 1}, // Sum exactly equals target
+		{},              // Empty array
+	}
+
+	target := []int{
+		1, 2, 10, 7, 7, 9,
+		10, 10, 4, 6, 5, 1,
+	}
+
+	expected := []int{
+		1, 0, 4, 2, 2, 0,
+		1, 1, 3, 2, 5, 0,
+	}
+
+	for i := range input {
+		output := minSubArrayLen1(target[i], input[i])
+
+		if output != expected[i] {
+			t.Errorf(
+				"\nInput: %v\nTarget: %d\nExpected: %d\nOutput: %d",
+				input[i], target[i], expected[i], output,
+			)
+		}
+	}
+}

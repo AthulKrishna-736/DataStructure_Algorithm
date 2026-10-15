@@ -87,3 +87,63 @@ func lengthOfLongestSubstring1(s string) int {
 
 	return maxLength
 }
+
+// 209. Minimum Size Subarray Sum
+func minSubArrayLen(target int, nums []int) int {
+	minLength := len(nums)
+
+	for i := 0; i < len(nums); i++ {
+		sum := 0
+		for j := i; j < len(nums); j++ {
+			sum += nums[j]
+
+			if sum >= target {
+				minLength = min(minLength, j-i+1)
+				break
+			}
+
+			if i == 0 && j == len(nums)-1 && sum < target {
+				return 0
+			}
+		}
+	}
+
+	return minLength
+}
+
+// 209 better solution
+func minSubArrayLen1(target int, nums []int) int {
+	minLength := len(nums) + 1
+	sum := 0
+	l := 0
+	r := 0
+
+	for r < len(nums) {
+		sum += nums[r]
+
+		if sum >= target {
+			minLength = min(minLength, r-l+1)
+
+			for {
+				if sum < target {
+					break
+				}
+
+				sum -= nums[l]
+				l++
+
+				if sum >= target {
+					minLength = min(minLength, r-l+1)
+				}
+			}
+		}
+
+		r++
+	}
+
+	if minLength > len(nums) {
+		return 0
+	}
+
+	return minLength
+}
