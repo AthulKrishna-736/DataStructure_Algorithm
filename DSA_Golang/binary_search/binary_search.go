@@ -174,3 +174,32 @@ func findMin(nums []int) int {
 
 	return minVal
 }
+
+// 154. Find Minimum in Rotated Sorted Array II
+func findMin1(nums []int) int {
+	minVal := math.MaxInt
+
+	low := 0
+	high := len(nums) - 1
+
+	for low <= high {
+		mid := low + (high-low)/2
+
+		if nums[low] == nums[mid] && nums[mid] == nums[high] {
+			minVal = min(minVal, nums[mid])
+			low++
+			high--
+			continue
+		}
+
+		if nums[low] <= nums[mid] {
+			minVal = min(minVal, nums[low])
+			low = mid + 1
+		} else {
+			minVal = min(minVal, nums[mid])
+			high = mid - 1
+		}
+	}
+
+	return minVal
+}

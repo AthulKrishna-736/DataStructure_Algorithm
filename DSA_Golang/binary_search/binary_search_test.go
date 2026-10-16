@@ -137,3 +137,71 @@ func Test153(t *testing.T) {
 		}
 	}
 }
+
+func Test154(t *testing.T) {
+	input := [][]int{
+		// Duplicate-heavy arrays
+		{2, 2, 2, 2, 0, 1, 2},
+		{3, 3, 3, 1, 3, 3},
+		{1, 1, 2, 1},
+		{10, 10, 10, 5, 10},
+		{4, 4, 4, 4, 1, 4, 4},
+
+		// Different rotation positions
+		{2, 3, 4, 5, 1},
+		{6, 7, 1, 2, 3, 4, 5},
+		{5, 1, 2, 3, 4},
+		{2, 3, 1},
+		{3, 1, 2},
+
+		// Minimum occurs multiple times
+		{1, 1, 1, 2, 1},
+		{0, 0, 1, 0, 0},
+		{2, 2, 3, 1, 1, 2},
+		{5, 5, 1, 1, 2, 5},
+
+		// Already sorted, with duplicates
+		{1, 1, 2, 2, 3, 3},
+		{0, 0, 0, 1, 2, 2},
+		{1, 2, 2, 2, 3, 3},
+
+		// Larger arrays with many duplicates
+		{4, 4, 4, 4, 4, 1, 2, 3, 4},
+		{3, 3, 3, 3, 3, 1, 2, 3},
+		{2, 2, 2, 2, 2, 2, 1, 2},
+	}
+
+	expected := []int{
+		0,
+		1,
+		1,
+		5,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		0,
+		1,
+		1,
+		1,
+		0,
+		1,
+		1,
+		1,
+		1,
+	}
+
+	for i := range input {
+		output := findMin1(input[i])
+
+		if output != expected[i] {
+			t.Errorf(
+				"\nInput: %v\nExpected: %d\nOutput: %d",
+				input[i], expected[i], output,
+			)
+		}
+	}
+}
