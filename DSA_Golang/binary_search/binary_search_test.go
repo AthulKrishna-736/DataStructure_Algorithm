@@ -104,3 +104,36 @@ func Test81(t *testing.T) {
 		}
 	}
 }
+
+func Test153(t *testing.T) {
+	input := [][]int{
+		{3, 4, 5, 1, 2},
+		{4, 5, 6, 7, 0, 1, 2},
+		{11, 13, 15, 17},
+		{2, 1},
+		{1},
+		{5, 1, 2, 3, 4},
+		{3, 1, 2},
+	}
+
+	expected := []int{
+		1,
+		0,
+		11,
+		1,
+		1,
+		1,
+		1,
+	}
+
+	for i := range input {
+		output := findMin(input[i])
+
+		if output != expected[i] {
+			t.Errorf(
+				"\nInput: %v\nExpected: %d\nOutput: %d",
+				input[i], expected[i], output,
+			)
+		}
+	}
+}
