@@ -1,5 +1,7 @@
 package binarysearch
 
+import "math"
+
 func BinarySearch(nums []int, target int) bool {
 	left := 0
 	right := len(nums) - 1
@@ -149,4 +151,26 @@ func searchRotated(nums []int, target int) bool {
 	}
 
 	return false
+}
+
+// 153. Find Minimum in Rotated Sorted Array
+func findMin(nums []int) int {
+	minVal := math.MaxInt
+
+	low := 0
+	high := len(nums) - 1
+
+	for low <= high {
+		mid := low + (high-low)/2
+
+		if nums[low] <= nums[mid] {
+			minVal = min(minVal, nums[low])
+			low = mid + 1
+		} else {
+			high = mid - 1
+			minVal = min(minVal, nums[mid])
+		}
+	}
+
+	return minVal
 }
