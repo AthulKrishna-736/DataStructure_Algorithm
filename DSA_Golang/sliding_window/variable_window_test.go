@@ -79,3 +79,43 @@ func Test209(t *testing.T) {
 		}
 	}
 }
+
+func Test1004(t *testing.T) {
+	input := [][]int{
+		// {1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0},
+		// {0, 0, 1, 1, 1, 0, 0},
+		// {1, 1, 1, 1},
+		// {0, 0, 0, 0},
+		// {1, 0, 1, 0, 1},
+		// {0, 0, 0, 1},
+		// {1, 0, 0, 1, 1, 1, 0, 1},
+		{0, 1, 1, 0, 1, 1, 1, 0, 1},
+		{1},
+		{0},
+		{1, 1, 0, 1, 1},
+		{0, 0, 1, 1},
+		{1, 0, 1, 1, 0, 1, 1, 1},
+		{0, 1, 0, 1, 0, 1, 0},
+	}
+
+	kValues := []int{
+		// 2, 0, 0, 2, 1, 1,2,
+		2, 0, 1, 1, 2, 1, 3,
+	}
+
+	expected := []int{
+		// 6, 3, 4, 2, 3, 2,6,
+		8, 1, 1, 5, 4, 6, 6,
+	}
+
+	for i := range input {
+		output := longestOnes1(input[i], kValues[i])
+
+		if output != expected[i] {
+			t.Errorf(
+				"\nInput: %v\nk: %d\nExpected: %d\nOutput: %d",
+				input[i], kValues[i], expected[i], output,
+			)
+		}
+	}
+}

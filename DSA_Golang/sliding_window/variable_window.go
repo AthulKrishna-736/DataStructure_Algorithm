@@ -147,3 +147,58 @@ func minSubArrayLen1(target int, nums []int) int {
 
 	return minLength
 }
+
+// 1004. Max Consecutive Ones III
+func longestOnes(nums []int, k int) int {
+	maxLength := 0
+
+	for i := 0; i < len(nums); i++ {
+		count := 0
+		for j := i; j < len(nums); j++ {
+			if nums[j] == 0 {
+				count++
+			}
+
+			if count <= k {
+				maxLength = max(maxLength, j-i+1)
+			} else {
+				break
+			}
+		}
+	}
+
+	return maxLength
+}
+
+// 1004 better solution
+func longestOnes1(nums []int, k int) int {
+	maxLength := 0
+	count := 0
+	l := 0
+	r := 0
+
+	for r < len(nums) {
+		if nums[r] == 0 {
+			count++
+		}
+
+		if count <= k {
+			maxLength = max(maxLength, r-l+1)
+		} else {
+			for {
+				if count <= k {
+					break
+				}
+
+				if nums[l] == 0 {
+					count--
+				}
+				l++
+			}
+		}
+
+		r++
+	}
+
+	return maxLength
+}
