@@ -202,3 +202,36 @@ func longestOnes1(nums []int, k int) int {
 
 	return maxLength
 }
+
+// 904. Fruit Into Baskets
+func totalFruit(fruits []int) int {
+	maxLength := 0
+	hashMap := make(map[int]int)
+
+	l := 0
+	r := 0
+
+	for r < len(fruits) {
+		hashMap[fruits[r]]++
+
+		if len(hashMap) > 2 {
+			for {
+				if len(hashMap) <= 2 {
+					break
+				}
+
+				hashMap[fruits[l]]--
+                if val:= hashMap[fruits[l]]; val == 0 {
+                    delete(hashMap, fruits[l])
+                }
+                
+				l++
+			}
+		}
+
+		maxLength = max(maxLength, r-l+1)
+		r++
+	}
+
+	return maxLength
+}
