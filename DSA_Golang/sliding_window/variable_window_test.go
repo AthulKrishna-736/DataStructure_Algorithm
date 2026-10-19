@@ -120,6 +120,37 @@ func Test1004(t *testing.T) {
 	}
 }
 
+func Test904(t *testing.T) {
+	input := [][]int{
+		{1, 2, 1},
+		{0, 1, 2, 2},
+		{1, 2, 3, 2, 2},
+		{3, 3, 3, 3},
+		{1},
+		{1, 2},
+	}
+
+	expected := []int{
+		3,
+		3,
+		4,
+		4,
+		1,
+		2,
+	}
+
+	for i := range input {
+		output := totalFruit(input[i])
+
+		if output != expected[i] {
+			t.Errorf(
+				"\nInput: %v\nExpected: %d\nOutput: %d",
+				input[i], expected[i], output,
+			)
+		}
+	}
+}
+
 func Test713(t *testing.T) {
 	input := [][]int{
 		{10, 5, 2, 6},
