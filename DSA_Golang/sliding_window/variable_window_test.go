@@ -119,3 +119,70 @@ func Test1004(t *testing.T) {
 		}
 	}
 }
+
+func Test713(t *testing.T) {
+	input := [][]int{
+		{10, 5, 2, 6},
+		{1},
+		{5},
+		{1, 1, 1, 1},
+		{2, 3},
+		{2, 2, 2},
+		{1, 2, 1, 2},
+		{10, 1, 1, 1, 10},
+		{2, 1, 3, 1},
+		{1, 2, 3},
+		{5, 6, 7},
+		{1, 1, 1, 1, 1, 1},
+		{2, 5, 3, 10},
+		{1, 2, 1, 3, 1, 2},
+		{100, 1, 1, 1, 1},
+	}
+
+	kValues := []int{
+		100,
+		2,
+		5,
+		2,
+		6,
+		4,
+		3,
+		10,
+		4,
+		1,
+		5,
+		7,
+		20,
+		4,
+		100,
+	}
+
+	expected := []int{
+		8,
+		1,
+		0,
+		10,
+		2,
+		3,
+		8,
+		6,
+		8,
+		0,
+		0,
+		21,
+		6,
+		13,
+		10,
+	}
+
+	for i := range input {
+		output := numSubarrayProductLessThanK1(input[i], kValues[i])
+
+		if output != expected[i] {
+			t.Errorf(
+				"\nInput: %v\nk: %d\nExpected: %d\nOutput: %d",
+				input[i], kValues[i], expected[i], output,
+			)
+		}
+	}
+}

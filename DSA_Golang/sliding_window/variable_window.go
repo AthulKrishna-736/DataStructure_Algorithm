@@ -221,10 +221,10 @@ func totalFruit(fruits []int) int {
 				}
 
 				hashMap[fruits[l]]--
-                if val:= hashMap[fruits[l]]; val == 0 {
-                    delete(hashMap, fruits[l])
-                }
-                
+				if val := hashMap[fruits[l]]; val == 0 {
+					delete(hashMap, fruits[l])
+				}
+
 				l++
 			}
 		}
@@ -234,4 +234,50 @@ func totalFruit(fruits []int) int {
 	}
 
 	return maxLength
+}
+
+// 713. Subarray Product Less Than K - brute force
+func numSubarrayProductLessThanK(nums []int, k int) int {
+	count := 0
+
+	for i := 0; i < len(nums); i++ {
+		product := 1
+		for j := i; j < len(nums); j++ {
+			product *= nums[j]
+
+			if product >= k {
+				break
+			}
+
+			count++
+		}
+	}
+
+	return count
+}
+
+func numSubarrayProductLessThanK1(nums []int, k int) int {
+	if k <= 1 {
+		return 0
+	}
+
+	count := 0
+	product := 1
+
+	l := 0
+	r := 0
+
+	for r < len(nums) {
+		product *= nums[r]
+
+		for product >= k {
+			product /= nums[l]
+			l++
+		}
+
+		count += r - l + 1
+		r++
+	}
+
+	return count
 }
