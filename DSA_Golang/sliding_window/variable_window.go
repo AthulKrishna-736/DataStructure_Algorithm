@@ -281,3 +281,8 @@ func numSubarrayProductLessThanK1(nums []int, k int) int {
 
 	return count
 }
+
+// 424. Longest Repeating Character Replacement
+func characterReplacement(s string, k int) int {
+
+}

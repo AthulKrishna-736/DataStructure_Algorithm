@@ -217,3 +217,70 @@ func Test713(t *testing.T) {
 		}
 	}
 }
+
+func Test424(t *testing.T) {
+	input := []string{
+		"ABAB",
+		"AABABBA",
+		"AAAA",
+		"ABCDE",
+		"A",
+		"ABBB",
+		"BAAA",
+		"ABABAB",
+		"ABC",
+		"AAAB",
+		"ABAA",
+		"BAAAB",
+		"ABBBAC",
+		"AABBBBAAA",
+		"ABABBA",
+	}
+
+	kValues := []int{
+		2,
+		1,
+		2,
+		0,
+		0,
+		2,
+		0,
+		3,
+		5,
+		0,
+		1,
+		2,
+		2,
+		2,
+		1,
+	}
+
+	expected := []int{
+		4,
+		4,
+		4,
+		1,
+		1,
+		4,
+		3,
+		5,
+		3,
+		3,
+		3,
+		5,
+		5,
+		6,
+		4,
+	}
+
+	for i := range input {
+		output := characterReplacement(input[i], kValues[i])
+
+		if output != expected[i] {
+			t.Errorf(
+				"\nInput: %q\nk: %d\nExpected: %d\nOutput: %d",
+				input[i], kValues[i], expected[i], output,
+			)
+		}
+	}
+}
