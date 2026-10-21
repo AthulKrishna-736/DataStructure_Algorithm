@@ -284,3 +284,52 @@ func Test424(t *testing.T) {
 		}
 	}
 }
+
+func Test1358(t *testing.T) {
+	input := []string{
+		"abcabc",
+		"aaacb",
+		"abc",
+		"aaaa",
+		"b",
+		"c",
+		"ab",
+		"ac",
+		"bc",
+		"aabcbc",
+		"aaabbc",
+		"abcabcabc",
+		"ababcc",
+		"abbc",
+		"ccba",
+	}
+
+	expected := []int{
+		10,
+		3,
+		1,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		6,
+		3,
+		28,
+		6,
+		1,
+		2,
+	}
+
+	for i := range input {
+		output := numberOfSubstrings1(input[i])
+
+		if output != expected[i] {
+			t.Errorf(
+				"\nInput: %q\nExpected: %d\nOutput: %d",
+				input[i], expected[i], output,
+			)
+		}
+	}
+}

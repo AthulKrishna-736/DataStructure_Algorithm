@@ -284,5 +284,49 @@ func numSubarrayProductLessThanK1(nums []int, k int) int {
 
 // 424. Longest Repeating Character Replacement
 func characterReplacement(s string, k int) int {
+	return 0
+}
 
+// 1358. Number of Substrings Containing All Three Characters
+func numberOfSubstrings(s string) int {
+	count := 0
+
+	s1 := [3]byte{'a', 'b', 'c'}
+
+	for i := 0; i < len(s); i++ {
+		s2 := [3]byte{}
+
+		for j := i; j < len(s); j++ {
+			s2[s[j]-'a'] = s[j]
+
+			if s1 == s2 {
+				count++
+			}
+		}
+	}
+
+	return count
+}
+
+// 1358 - better solution
+func numberOfSubstrings1(s string) int {
+	count := 0
+	str1 := [3]int{}
+	l := 0
+	r := 0
+
+	for r < len(s) {
+		str1[s[r]-'a']++
+
+		for str1[0] > 0 && str1[1] > 0 && str1[2] > 0 {
+			count += len(s) - r
+
+			str1[s[l]-'a']--
+			l++
+		}
+
+		r++
+	}
+
+	return count
 }
