@@ -263,10 +263,10 @@ func Test424(t *testing.T) {
 		1,
 		4,
 		3,
-		5,
+		6,
 		3,
 		3,
-		3,
+		4,
 		5,
 		5,
 		6,
@@ -274,7 +274,7 @@ func Test424(t *testing.T) {
 	}
 
 	for i := range input {
-		output := characterReplacement(input[i], kValues[i])
+		output := characterReplacement1(input[i], kValues[i])
 
 		if output != expected[i] {
 			t.Errorf(
