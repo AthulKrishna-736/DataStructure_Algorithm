@@ -432,3 +432,62 @@ func helper930(nums []int, goal int) int {
 func numSubarraysWithSum1(nums []int, goal int) int {
 	return helper930(nums, goal) - helper930(nums, goal-1)
 }
+
+// 1248. Count Number of Nice Subarrays - brute force
+func numberOfSubarrays(nums []int, k int) int {
+	count := 0
+
+	for i := 0; i < len(nums); i++ {
+		oddCount := 0
+		for j := i; j < len(nums); j++ {
+			if nums[j]%2 != 0 {
+				oddCount++
+			}
+
+			if oddCount > k {
+				break
+			}
+
+			if oddCount == k {
+				count++
+			}
+		}
+	}
+
+	return count
+}
+
+func helper1248(nums []int, k int) int {
+	if k < 0 {
+		return 0
+	}
+
+	count := 0
+	oddCount := 0
+
+	l := 0
+	r := 0
+
+	for r < len(nums) {
+		if nums[r]%2 != 0 {
+			oddCount++
+		}
+
+		for oddCount > k {
+			if nums[l]%2 != 0 {
+				oddCount--
+			}
+			l++
+		}
+
+		count += r - l + 1
+		r++
+	}
+
+	return count
+}
+
+// 1248 - better solution
+func numberOfSubarrays1(nums []int, k int) int {
+	return helper1248(nums, k) - helper1248(nums, k-1)
+}
