@@ -379,3 +379,56 @@ func numberOfSubstrings1(s string) int {
 
 	return count
 }
+
+// 930. Binary Subarrays With Sum - brute force
+func numSubarraysWithSum(nums []int, goal int) int {
+	count := 0
+
+	for i := 0; i < len(nums); i++ {
+		sum := 0
+		for j := i; j < len(nums); j++ {
+			sum += nums[j]
+
+			if sum > goal {
+				break
+			}
+
+			if sum == goal {
+				count++
+			}
+		}
+	}
+
+	return count
+}
+
+func helper930(nums []int, goal int) int {
+	if goal < 0 {
+		return 0
+	}
+
+	count := 0
+	sum := 0
+	l := 0
+	r := 0
+
+	for r < len(nums) {
+		sum += nums[r]
+
+		for sum > goal {
+			sum -= nums[l]
+			l++
+		}
+
+		count += r - l + 1
+
+		r++
+	}
+
+	return count
+}
+
+// 930 - better solution
+func numSubarraysWithSum1(nums []int, goal int) int {
+	return helper930(nums, goal) - helper930(nums, goal-1)
+}

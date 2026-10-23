@@ -333,3 +333,58 @@ func Test1358(t *testing.T) {
 		}
 	}
 }
+
+func Test930(t *testing.T) {
+	input := [][]int{
+		{1, 0, 1, 0, 1},
+		{0, 0, 0, 0, 0},
+		{1, 1, 1, 1},
+		{1, 1, 1, 1},
+		{1, 0, 0, 1, 0, 1},
+		{0},
+		{1},
+		{1},
+		{1, 0, 0, 0, 1},
+		{1, 0, 1},
+		{1, 1, 0, 1},
+		{0, 1, 0, 1, 0},
+		{1, 0, 1, 0, 1},
+		{1, 1, 1},
+		{0, 0, 1, 0, 0},
+	}
+
+	goal := []int{
+		2, 0, 0, 4, 2,
+		0, 1, 0, 1, 1,
+		2, 1, 3, 2, 0,
+	}
+
+	expected := []int{
+		4,
+		15,
+		0,
+		1,
+		5,
+		1,
+		1,
+		0,
+		8,
+		4,
+		3,
+		8,
+		1,
+		2,
+		6,
+	}
+
+	for i := range input {
+		output := numSubarraysWithSum1(input[i], goal[i])
+
+		if output != expected[i] {
+			t.Errorf(
+				"\nInput: %v\nGoal: %d\nExpected: %d\nOutput: %d",
+				input[i], goal[i], expected[i], output,
+			)
+		}
+	}
+}
