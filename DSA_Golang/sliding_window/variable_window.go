@@ -491,3 +491,57 @@ func helper1248(nums []int, k int) int {
 func numberOfSubarrays1(nums []int, k int) int {
 	return helper1248(nums, k) - helper1248(nums, k-1)
 }
+
+// 992. Subarrays with K Different Integers - brute force
+func subarraysWithKDistinct(nums []int, k int) int {
+	count := 0
+
+	for i := 0; i < len(nums); i++ {
+		hashMap := make(map[int]int)
+		for j := i; j < len(nums); j++ {
+			hashMap[nums[j]]++
+
+			if len(hashMap) > k {
+				break
+			}
+
+			if len(hashMap) == k {
+				count++
+			}
+		}
+	}
+
+	return count
+}
+
+func helper992(nums []int, k int) int {
+	count := 0
+	hashMap := make(map[int]int)
+
+	l := 0
+	r := 0
+
+	for r < len(nums) {
+		hashMap[nums[r]]++
+
+		for len(hashMap) > k {
+			hashMap[nums[l]]--
+
+			if val := hashMap[nums[l]]; val == 0 {
+				delete(hashMap, nums[l])
+			}
+
+			l++
+		}
+
+		count += r - l + 1
+		r++
+	}
+
+	return count
+}
+
+// 992 - better solution
+func subarraysWithKDistinct1(nums []int, k int) int {
+	return helper992(nums, k) - helper992(nums, k-1)
+}

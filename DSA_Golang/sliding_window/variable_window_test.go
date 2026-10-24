@@ -475,12 +475,12 @@ func Test992(t *testing.T) {
 		2,
 		7,
 		10,
-		12,
+		8,
 		1,
 	}
 
 	for i := range input {
-		output := subarraysWithKDistinct(input[i], k[i])
+		output := subarraysWithKDistinct1(input[i], k[i])
 
 		if output != expected[i] {
 			t.Errorf(
