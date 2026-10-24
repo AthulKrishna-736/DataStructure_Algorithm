@@ -450,3 +450,43 @@ func Test1248(t *testing.T) {
 		}
 	}
 }
+
+func Test992(t *testing.T) {
+	input := [][]int{
+		{1, 2, 1, 2, 3},
+		{1, 2, 1, 3, 4},
+		{1, 1, 1, 1},
+		{1, 2, 3},
+		{2, 2, 1, 2, 2},
+		{1, 2, 1, 2, 1},
+		{1, 1, 2, 2, 3, 3},
+		{1, 2, 3, 4, 5},
+	}
+
+	k := []int{
+		2, 3, 1, 2,
+		1, 2, 2, 5,
+	}
+
+	expected := []int{
+		7,
+		3,
+		10,
+		2,
+		7,
+		10,
+		12,
+		1,
+	}
+
+	for i := range input {
+		output := subarraysWithKDistinct(input[i], k[i])
+
+		if output != expected[i] {
+			t.Errorf(
+				"\nInput: %v\nK: %d\nExpected: %d\nOutput: %d",
+				input[i], k[i], expected[i], output,
+			)
+		}
+	}
+}
