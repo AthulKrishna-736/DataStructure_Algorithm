@@ -490,3 +490,67 @@ func Test992(t *testing.T) {
 		}
 	}
 }
+
+func Test76(t *testing.T) {
+	input := []string{
+		"ADOBECODEBANC",
+		"a",
+		"a",
+		"aa",
+		"aa",
+		"ab",
+		"abc",
+		"bba",
+		"cabwefgewcwaefgcf",
+		"",
+		"abc",
+		"bbaa",
+		"abdecfab",
+		"aaaaaaaaaaaabbbbbcdd",
+	}
+
+	target := []string{
+		"ABC",
+		"a",
+		"b",
+		"aa",
+		"a",
+		"b",
+		"ac",
+		"aba",
+		"cae",
+		"a",
+		"ac",
+		"aba",
+		"acf",
+		"abcdd",
+	}
+
+	expected := []string{
+		"BANC",
+		"a",
+		"",
+		"aa",
+		"a",
+		"b",
+		"abc",
+		"",
+		"cwae",
+		"",
+		"abc",
+		"baa",
+		"cfab",
+		"abbbbbcdd",
+	}
+
+	for i := range input {
+		output := minWindow(input[i], target[i])
+
+		if output != expected[i] {
+			t.Errorf(
+				"\nInput: %q\nTarget: %q\nExpected: %q\nOutput: %q",
+				input[i], target[i], expected[i], output,
+			)
+		}
+	}
+}
