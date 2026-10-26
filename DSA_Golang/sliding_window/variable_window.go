@@ -545,3 +545,44 @@ func helper992(nums []int, k int) int {
 func subarraysWithKDistinct1(nums []int, k int) int {
 	return helper992(nums, k) - helper992(nums, k-1)
 }
+
+// 76. Minimum Window Substring
+func minWindow(s string, t string) string {
+	hashMap := make(map[byte]int, 52)
+	l := 0
+	r := 0
+	minLength := len(s) + 1
+	sIndex := -1
+	count := 0
+
+	for i := 0; i < len(t); i++ {
+		hashMap[t[i]]++
+	}
+
+	for r < len(s) {
+		if val := hashMap[s[r]]; val > 0 {
+			count++
+		}
+		hashMap[s[r]]--
+
+		for count == len(t) {
+			if r-l+1 < minLength {
+				minLength = r - l + 1
+				sIndex = l
+			}
+
+			hashMap[s[l]]++
+			if hashMap[s[l]] > 0 {
+				count--
+			}
+			l++
+		}
+		r++
+	}
+
+	if sIndex == -1 {
+		return ""
+	}
+
+	return s[sIndex : sIndex+minLength]
+}

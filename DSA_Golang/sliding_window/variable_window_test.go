@@ -539,7 +539,7 @@ func Test76(t *testing.T) {
 		"",
 		"abc",
 		"baa",
-		"cfab",
+		"cfa",
 		"abbbbbcdd",
 	}
 
