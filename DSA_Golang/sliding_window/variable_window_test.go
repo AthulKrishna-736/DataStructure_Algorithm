@@ -554,3 +554,62 @@ func Test76(t *testing.T) {
 		}
 	}
 }
+
+func Test1763(t *testing.T) {
+	input := []string{
+		"YazaAay",
+		"Bb",
+		"c",
+		"dDzeE",
+		"aAbB",
+		"",
+		"a",
+		"Aa",
+		"aA",
+		"abAB",
+		"cChH",
+		"abcABC",
+		"azAZ",
+		"AcZCzB",
+		"aaA",
+		"BbAa",
+		"dDCCcc",
+		"qRrQ",
+		"AbCdEf",
+		"XyYx",
+	}
+
+	expected := []string{
+		"aAa",
+		"Bb",
+		"",
+		"dD",
+		"aAbB",
+		"",
+		"",
+		"Aa",
+		"aA",
+		"abAB",
+		"cChH",
+		"abcABC",
+		"azAZ",
+		"cZCz",
+		"aaA",
+		"BbAa",
+		"dDCCcc",
+		"qRrQ",
+		"",
+		"XyYx",
+	}
+
+	for i := range input {
+		output := longestNiceSubstring(input[i])
+
+		if output != expected[i] {
+			t.Errorf(
+				"\nInput: %q\nExpected: %q\nOutput: %q",
+				input[i], expected[i], output,
+			)
+		}
+	}
+}
