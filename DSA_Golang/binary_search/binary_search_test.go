@@ -242,3 +242,26 @@ func TestCountRotations(t *testing.T) {
 		}
 	}
 }
+
+func Test540(t *testing.T) {
+	input := [][]int{
+		{1, 1, 2, 3, 3, 4, 4, 8, 8},
+		{0, 1, 1, 2, 2, 3, 3},
+		{1, 1, 2, 2, 3, 3, 4},
+		{7},
+		{1, 2, 2, 3, 3, 4, 4},
+		{1, 1, 2, 2, 3, 4, 4},
+		{-9, -9, -5, -5, -2, 0, 0},
+		{1, 1, 3, 3, 5, 5, 7, 8, 8, 9, 9},
+	}
+
+	expected := []int{2, 0, 4, 7, 1, 3, -2, 7}
+
+	for i := range input {
+		output := singleNonDuplicate(input[i])
+		if output != expected[i] {
+			t.Errorf("\nInput: %v\nExpected: %d\nOutput: %d",
+				input[i], expected[i], output)
+		}
+	}
+}
