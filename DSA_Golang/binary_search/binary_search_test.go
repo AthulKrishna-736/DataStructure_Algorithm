@@ -205,3 +205,40 @@ func Test154(t *testing.T) {
 		}
 	}
 }
+
+func TestCountRotations(t *testing.T) {
+	input := [][]int{
+		{15, 18, 2, 3, 6, 12},
+		{7, 9, 11, 12, 5},
+		{1, 2, 3, 4, 5},
+		{2, 3, 4, 5, 1},
+		{4, 5, 1, 2, 3},
+		{10},
+		{3, 1, 2},
+		{2, 1},
+		{},
+	}
+
+	expected := []int{
+		2,
+		4,
+		0,
+		4,
+		2,
+		0,
+		1,
+		1,
+		0,
+	}
+
+	for i := range input {
+		output := countRotations(input[i])
+
+		if output != expected[i] {
+			t.Errorf(
+				"\nInput: %v\nExpected: %d\nOutput: %d",
+				input[i], expected[i], output,
+			)
+		}
+	}
+}

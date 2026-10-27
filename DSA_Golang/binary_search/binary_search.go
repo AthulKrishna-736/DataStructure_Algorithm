@@ -203,3 +203,42 @@ func findMin1(nums []int) int {
 
 	return minVal
 }
+
+func countRotations(nums []int) int {
+	count := 0
+	min := math.MaxInt
+
+	low := 0
+	high := len(nums) - 1
+
+	for low <= high {
+		mid := low + (high-low)/2
+
+		// if fully sorted array check
+		if nums[low] <= nums[high] {
+			if nums[low] < min {
+				min = nums[low]
+				count = low
+			}
+			break
+		}
+
+		if nums[low] <= nums[mid] {
+			if nums[low] < min {
+				min = nums[low]
+				count = low
+			}
+
+			low = mid + 1
+		} else {
+			if nums[mid] < min {
+				min = nums[mid]
+				count = mid
+			}
+
+			high = mid - 1
+		}
+	}
+
+	return count
+}
