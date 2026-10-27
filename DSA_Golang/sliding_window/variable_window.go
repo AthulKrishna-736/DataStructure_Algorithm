@@ -586,3 +586,45 @@ func minWindow(s string, t string) string {
 
 	return s[sIndex : sIndex+minLength]
 }
+
+// 1763. Longest Nice Substring
+func helper1763(set map[byte]struct{}) bool {
+	for char := range set {
+		if char >= 'a' && char <= 'z' {
+			if _, ok := set[char-'a'+'A']; !ok {
+				return false
+			}
+		} else if char >= 'A' && char <= 'Z' {
+			if _, ok := set[char-'A'+'a']; !ok {
+				return false
+			}
+		}
+	}
+
+	return true
+}
+
+func longestNiceSubstring(s string) string {
+	sIndex := -1
+	maxLength := 0
+
+	for i := 0; i < len(s); i++ {
+		hashSet := make(map[byte]struct{}, 52)
+		for j := i; j < len(s); j++ {
+			hashSet[s[j]] = struct{}{}
+
+			if helper1763(hashSet) {
+				if j-i+1 > maxLength {
+					maxLength = max(maxLength, j-i+1)
+					sIndex = i
+				}
+			}
+		}
+	}
+
+	if maxLength == 0 {
+		return ""
+	}
+
+	return s[sIndex : sIndex+maxLength]
+}
