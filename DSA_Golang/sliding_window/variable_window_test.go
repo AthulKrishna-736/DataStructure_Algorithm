@@ -613,3 +613,61 @@ func Test1763(t *testing.T) {
 		}
 	}
 }
+
+func Test2379(t *testing.T) {
+	input := []string{
+		"WBBWW",
+		"WBWBB",
+		"BBBB",
+		"WWBB",
+		"BWWBW",
+		"WWWWB",
+		"BBWBW",
+		"WBWW",
+		"WWBWW",
+		"BBBBB",
+		"W",
+		"B",
+	}
+
+	kValues := []int{
+		3,
+		5,
+		4,
+		2,
+		4,
+		3,
+		3,
+		2,
+		4,
+		3,
+		1,
+		1,
+	}
+
+	expected := []int{
+		1,
+		2,
+		0,
+		0,
+		2,
+		2,
+		1,
+		1,
+		3,
+		0,
+		1,
+		0,
+	}
+
+	for i := range input {
+		output := minimumRecolors1(input[i], kValues[i])
+
+		if output != expected[i] {
+			t.Errorf(
+				"\nInput: %q, k: %d\nExpected: %d\nOutput: %d",
+				input[i], kValues[i], expected[i], output,
+			)
+		}
+	}
+}

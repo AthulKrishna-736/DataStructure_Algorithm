@@ -628,3 +628,58 @@ func longestNiceSubstring(s string) string {
 
 	return s[sIndex : sIndex+maxLength]
 }
+
+// 2379. Minimum Recolors to Get K Consecutive Black Blocks
+func minimumRecolors(blocks string, k int) int {
+	minCount := k + 1
+
+	for i := 0; i < len(blocks); i++ {
+		count := 0
+		for j := i; j < len(blocks); j++ {
+			if blocks[j] == 'W' {
+				count++
+			}
+
+			if j-i+1 > k {
+				break
+			}
+
+			if j-i+1 == k {
+				minCount = min(minCount, count)
+			}
+		}
+	}
+
+	return minCount
+}
+
+// 2379 better solution
+func minimumRecolors1(blocks string, k int) int {
+	minCount := k + 1
+	count := 0
+
+	l := 0
+	r := 0
+
+	for r < len(blocks) {
+		if blocks[r] == 'W' {
+			count++
+		}
+
+		for r-l+1 > k {
+			if blocks[l] == 'W' {
+				count--
+			}
+
+			l++
+		}
+
+		if r-l+1 == k {
+			minCount = min(minCount, count)
+		}
+
+		r++
+	}
+
+	return minCount
+}
