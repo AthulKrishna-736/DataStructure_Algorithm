@@ -186,3 +186,52 @@ func Test2269(t *testing.T) {
 		}
 	}
 }
+
+func Test1876(t *testing.T) {
+	input := []string{
+		"xyzzaz",
+		"abcabc",
+		"aababc",
+		"aaaaaa",
+		"abcdef",
+		"ab",
+		"abc",
+		"aaa",
+		"aba",
+		"abca",
+		"dvdf",
+		"pqrpq",
+		"abcdde",
+		"abcdefg",
+		"abacaba",
+	}
+
+	expected := []int{
+		1,
+		4,
+		1,
+		0,
+		4,
+		0,
+		1,
+		0,
+		0,
+		2,
+		1,
+		3,
+		2,
+		5,
+		2,
+	}
+
+	for i := range input {
+		output := countGoodSubstrings1(input[i])
+
+		if output != expected[i] {
+			t.Errorf(
+				"\nInput: %q\nExpected: %d\nOutput: %d",
+				input[i], expected[i], output,
+			)
+		}
+	}
+}

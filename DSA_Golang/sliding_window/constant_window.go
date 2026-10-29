@@ -605,3 +605,64 @@ func DivisorSubstrings1(num int, k int) int {
 	}
 	return count
 }
+
+// 1876. Substrings of Size Three with Distinct Characters
+func countGoodSubstrings(s string) int {
+	count := 0
+	k := 3
+
+	for i := 0; i <= len(s)-k; i++ {
+		hashSet := make(map[byte]struct{})
+		for j := i; j < k+i; j++ {
+			if _, ok := hashSet[s[j]]; ok {
+				break
+			}
+
+			hashSet[s[j]] = struct{}{}
+		}
+
+		if len(hashSet) == k {
+			count++
+		}
+	}
+
+	return count
+}
+
+// 1876 better solution
+func countGoodSubstrings1(s string) int {
+	count := 0
+	k := 3
+	hashMap := make(map[byte]int)
+	l := 0
+	r := k
+
+	if len(s) < k {
+		return count
+	}
+
+	for i := 0; i < k; i++ {
+		hashMap[s[i]]++
+	}
+
+	if len(hashMap) == k {
+		count++
+	}
+
+	for r < len(s) {
+		hashMap[s[l]]--
+		if val := hashMap[s[l]]; val == 0 {
+			delete(hashMap, s[l])
+		}
+		l++
+
+		hashMap[s[r]]++
+
+		if len(hashMap) == k {
+			count++
+		}
+		r++
+	}
+
+	return count
+}
