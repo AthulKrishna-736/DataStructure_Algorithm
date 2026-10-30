@@ -2,6 +2,8 @@ package slidingwindow
 
 import (
 	"fmt"
+	"math"
+	"sort"
 	"strconv"
 )
 
@@ -665,4 +667,24 @@ func countGoodSubstrings1(s string) int {
 	}
 
 	return count
+}
+
+// 1984. Minimum Difference Between Highest and Lowest of K Scores
+func minimumDifference(nums []int, k int) int {
+	minDiff := math.MaxInt
+
+	sort.Ints(nums)
+
+	i := 0
+	j := k - 1
+
+	for j < len(nums) {
+		diff := nums[j] - nums[i]
+
+		minDiff = min(minDiff, diff)
+		i++
+		j++
+	}
+
+	return minDiff
 }
