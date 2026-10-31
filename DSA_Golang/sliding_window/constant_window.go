@@ -688,3 +688,84 @@ func minimumDifference(nums []int, k int) int {
 
 	return minDiff
 }
+
+// 3258. Count Substrings That Satisfy K-Constraint I
+func countKConstraintSubstrings(s string, k int) int {
+	count := 0
+
+	for i := 0; i < len(s); i++ {
+		binMap := make(map[byte]int, 2)
+		for j := i; j < len(s); j++ {
+			binMap[s[j]]++
+
+			val0 := binMap['0']
+			val1 := binMap['1']
+
+			if val0 > k && val1 > k {
+				break
+			}
+
+			count++
+		}
+	}
+
+	return count
+}
+
+// 3258 better solution
+func countKConstraintSubstrings1(s string, k int) int {
+	count := 0
+	binMap := make(map[byte]int)
+
+	l := 0
+	r := 0
+
+	for r < len(s) {
+		binMap[s[r]]++
+
+		for {
+			val0 := binMap['0']
+			val1 := binMap['1']
+
+			if val0 <= k || val1 <= k {
+				break
+			}
+
+			binMap[s[l]]--
+			l++
+		}
+
+		count += r - l + 1
+		r++
+	}
+
+	return count
+}
+
+// 3258 array data structure version
+func countKConstraintSubstrings2(s string, k int) int {
+	count := 0	
+	binArr := [2]int{}
+
+	l := 0
+	r := 0
+
+	for r < len(s) {
+		binArr[s[r]-'0']++
+
+		for {
+
+			if binArr[0] <= k || binArr[1] <= k {
+				break
+			}
+
+			binArr[s[l]-'0']--
+			l++
+		}
+
+		count += r - l + 1
+		r++
+	}
+
+	return count
+}

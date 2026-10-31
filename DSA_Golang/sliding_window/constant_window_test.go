@@ -290,3 +290,40 @@ func Test1984(t *testing.T) {
 		}
 	}
 }
+
+func Test3258(t *testing.T) {
+	input := []string{
+		"1",
+		"00000",
+		"10101",
+		"001101",
+		"01010101010101010101010101010101010101010101010101",
+	}
+
+	k := []int{
+		1,
+		1,
+		1,
+		2,
+		1,
+	}
+
+	expected := []int{
+		1,
+		15,
+		12,
+		20,
+		147,
+	}
+
+	for i := range input {
+		output := countKConstraintSubstrings2(input[i], k[i])
+
+		if output != expected[i] {
+			t.Errorf(
+				"\nInput: %s, k: %d\nExpected: %d\nOutput: %d",
+				input[i], k[i], expected[i], output,
+			)
+		}
+	}
+}
