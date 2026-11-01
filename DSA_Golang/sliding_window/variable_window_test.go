@@ -671,3 +671,78 @@ func Test2379(t *testing.T) {
 		}
 	}
 }
+
+func Test220(t *testing.T) {
+	input := [][]int{
+		{1, 2, 3, 1},
+		{1, 5, 9, 1, 5, 9},
+		{1, 2, 3, 1, 2, 3},
+		{1, 0, 1, 1},
+		{1, 5, 9, 13},
+		{1, 2},
+		{1, 1},
+		{-1, -1},
+		{-3, -1, 1, 3},
+		{1000000000, -1000000000},
+		{-1000000000, -999999999},
+		{1, 3, 6, 2},
+		{4, 2, 3, 1},
+		{0, 0, 0, 0},
+		{1, 10, 20, 30, 1},
+		{-5, -3, -1, -5},
+		{1, 100, 2, 101},
+		{1, 2, 3, 4, 5},
+		{1, 1000000000, 1},
+		{-1000000000, 0, 1000000000},
+	}
+
+	indexDiff := []int{
+		3, 2, 2, 3, 3,
+		1, 1, 1, 3, 1,
+		1, 3, 2, 3, 4,
+		3, 2, 2, 2, 2,
+	}
+
+	valueDiff := []int{
+		0, 3, 0, 0, 2,
+		0, 0, 0, 2, 1000000000,
+		1, 2, 2, 0, 0,
+		0, 1, 1, 0, 1000000000,
+	}
+
+	expected := []bool{
+		true,
+		false,
+		false,
+		true,
+		false,
+		false,
+		true,
+		true,
+		true,
+		false,
+		true,
+		true,
+		true,
+		true,
+		true,
+		true,
+		true,
+		true,
+		true,
+		true,
+	}
+
+	for i := range input {
+		output := containsNearbyAlmostDuplicate(
+			input[i], indexDiff[i], valueDiff[i],
+		)
+
+		if output != expected[i] {
+			t.Errorf(
+				"\nInput: %v, indexDiff: %d, valueDiff: %d\nExpected: %t\nOutput: %t",
+				input[i], indexDiff[i], valueDiff[i], expected[i], output,
+			)
+		}
+	}
+}

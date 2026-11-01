@@ -683,3 +683,25 @@ func minimumRecolors1(blocks string, k int) int {
 
 	return minCount
 }
+
+// 220. Contains Duplicate III
+func containsNearbyAlmostDuplicate(nums []int, indexDiff int, valueDiff int) bool {
+	for i := 0; i < len(nums); i++ {
+		for j := i + 1; j < len(nums); j++ {
+			if j-i > indexDiff {
+				break
+			}
+
+			res := nums[j] - nums[i]
+			if res < 0 {
+				res = res * -1
+			}
+
+			if res <= valueDiff {
+				return true
+			}
+		}
+	}
+
+	return false
+}
