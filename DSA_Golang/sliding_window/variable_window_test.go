@@ -746,3 +746,71 @@ func Test220(t *testing.T) {
 		}
 	}
 }
+
+func Test2760(t *testing.T) {
+	input := [][]int{
+		{3, 2, 5, 4},
+		{1, 2},
+		{2, 3, 4, 5},
+		{1, 2, 3, 4, 5},
+		{2, 4, 6, 8},
+		{1, 3, 5, 7},
+		{2},
+		{1},
+		{10, 11, 12},
+		{4, 3, 2, 5, 4},
+		{8, 5, 4, 3, 2},
+		{2, 1, 4, 3, 6, 5},
+		{1, 2, 1, 2, 1},
+		{6, 5, 4, 3, 2, 1},
+		{2, 3, 4, 5, 6, 7},
+		{2, 1, 2, 3},
+		{2, 1, 2, 1, 2},
+		{5, 4, 3, 2, 1},
+		{10, 9, 8, 7, 6},
+		{1, 4, 3, 2, 5},
+		{2, 8},
+	}
+
+	threshold := []int{
+		5, 2, 5, 5, 10,
+		10, 2, 2, 12, 5,
+		8, 6, 2, 6, 7,
+		3, 2, 2, 10, 5, 4,
+	}
+
+	expected := []int{
+		3,
+		1,
+		4,
+		4,
+		1,
+		0,
+		1,
+		0,
+		3,
+		5,
+		5,
+		6,
+		4,
+		6,
+		6,
+		4,
+		5,
+		2,
+		5,
+		4,
+		1,
+	}
+
+	for i := range input {
+		output := longestAlternatingSubarray1(input[i], threshold[i])
+
+		if output != expected[i] {
+			t.Errorf(
+				"\nInput: %v, threshold: %d\nExpected: %d\nOutput: %d",
+				input[i], threshold[i], expected[i], output,
+			)
+		}
+	}
+}

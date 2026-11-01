@@ -705,3 +705,57 @@ func containsNearbyAlmostDuplicate(nums []int, indexDiff int, valueDiff int) boo
 
 	return false
 }
+
+// 2760. Longest Even Odd Subarray With Threshold
+func longestAlternatingSubarray(nums []int, threshold int) int {
+	maxLength := 0
+
+	for i := 0; i < len(nums); i++ {
+		if nums[i]%2 == 0 {
+			for j := i; j < len(nums); j++ {
+				if nums[j] > threshold {
+					break
+				}
+
+				if j > i && nums[j]%2 == nums[j-1]%2 {
+					break
+				}
+
+				maxLength = max(maxLength, j-i+1)
+			}
+		}
+	}
+
+	return maxLength
+}
+
+// 2760 better solution
+func longestAlternatingSubarray1(nums []int, threshold int) int {
+	maxLength := 0
+
+	l := 0
+	r := 0
+
+	for r < len(nums) {
+
+		if nums[r] > threshold {
+			l = r + 1
+			r++
+			continue
+		}
+
+		if r > l && nums[r]%2 == nums[r-1]%2 {
+			l = r
+		}
+		if nums[l]%2 != 0 {
+			l = r + 1
+			r++
+			continue
+		}
+
+		maxLength = max(maxLength, r-l+1)
+		r++
+	}
+
+	return maxLength
+}
