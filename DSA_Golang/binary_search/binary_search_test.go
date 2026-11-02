@@ -1,6 +1,9 @@
 package binarysearch
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestBinarySearch(t *testing.T) {
 	input := []int{10, 20, 30, 40, 50, 60, 70}
@@ -262,6 +265,57 @@ func Test540(t *testing.T) {
 		if output != expected[i] {
 			t.Errorf("\nInput: %v\nExpected: %d\nOutput: %d",
 				input[i], expected[i], output)
+		}
+	}
+}
+
+func Test162(t *testing.T) {
+	input := [][]int{
+		{1, 2, 3, 1},
+		{1, 2, 1, 3, 5, 6, 4},
+		{1},
+		{1, 2},
+		{2, 1},
+		{1, 2, 3, 4, 5},
+		{5, 4, 3, 2, 1},
+		{1, 3, 2, 4, 1},
+		{2, 1, 2, 1, 2},
+		{10, 20, 15, 2, 23, 90, 67},
+		{1, 3, 5, 7, 6, 4, 2},
+		{9, 7, 5, 3, 4, 6, 8},
+	}
+
+	expected := [][]int{
+		{2},
+		{1, 5},
+		{0},
+		{1},
+		{0},
+		{4},
+		{0},
+		{1, 3},
+		{0, 2, 4},
+		{1, 5},
+		{3},
+		{0, 6},
+	}
+
+	for i := 0; i < len(input); i++ {
+		result := findPeakElement(input[i])
+
+		valid := false
+		for _, peak := range expected[i] {
+			if result == peak {
+				valid = true
+				break
+			}
+		}
+
+		if !valid {
+			t.Errorf("Test Failed | Input: %v | Output: %d | Expected Peaks: %v",
+				input[i], result, expected[i])
+		} else {
+			fmt.Println("Test Passed | Input:", input[i], "| Output:", result)
 		}
 	}
 }
