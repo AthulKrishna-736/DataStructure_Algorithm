@@ -1,6 +1,9 @@
 package slidingwindow
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 func VariableWindowBruteForce(nums []int, k int) {
 	maxLength := 0
@@ -755,6 +758,45 @@ func longestAlternatingSubarray1(nums []int, threshold int) int {
 
 		maxLength = max(maxLength, r-l+1)
 		r++
+	}
+
+	return maxLength
+}
+
+// 594. Longest Harmonious Subsequence
+func findLHS(nums []int) int {
+	maxLength := 0
+
+	sort.Ints(nums)
+
+	for i := 0; i < len(nums); i++ {
+		idx := -1
+		for j := i; j < len(nums); j++ {
+			if j > i && nums[j]-nums[i] == 1 {
+				idx = j
+			}
+		}
+
+		if idx != -1 {
+			maxLength = max(maxLength, idx-i+1)
+		}
+	}
+
+	return maxLength
+}
+
+func findLHS1(nums []int) int {
+	maxLength := 0
+	hashMap := make(map[int]int)
+
+	for i := 0; i < len(nums); i++ {
+		hashMap[nums[i]]++
+	}
+
+	for key, val := range hashMap {
+		if nextCount, ok := hashMap[key+1]; ok {
+			maxLength = max(maxLength, val+nextCount)
+		}
 	}
 
 	return maxLength
