@@ -319,3 +319,46 @@ func Test162(t *testing.T) {
 		}
 	}
 }
+
+func Test69(t *testing.T) {
+	input := []int{
+		4,
+		8,
+		0,
+		1,
+		2,
+		9,
+		16,
+		25,
+		36,
+		100,
+		2147395600,
+		2147483647,
+	}
+
+	expected := []int{
+		2,
+		2,
+		0,
+		1,
+		1,
+		3,
+		4,
+		5,
+		6,
+		10,
+		46340,
+		46340,
+	}
+
+	for i := 0; i < len(input); i++ {
+		result := mySqrt(input[i])
+
+		if result != expected[i] {
+			t.Errorf("Test Failed | Input: %d | Output: %d | Expected: %d",
+				input[i], result, expected[i])
+		} else {
+			fmt.Println("Test Passed | Input:", input[i], "| Output:", result)
+		}
+	}
+}
