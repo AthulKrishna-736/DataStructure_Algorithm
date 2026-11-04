@@ -364,3 +364,44 @@ func findNthRoot(m int, n int) int {
 
 	return -1
 }
+
+func helper875_1(arr []int) int {
+	maxVal := math.MinInt
+
+	for i := 0; i < len(arr); i++ {
+		maxVal = max(maxVal, arr[i])
+	}
+
+	return maxVal
+}
+
+func helper875_2(piles []int, bannana int) int {
+	totalHrs := 0
+
+	for i := 0; i < len(piles); i++ {
+		totalHrs += int(math.Ceil(float64(piles[i]) / float64(bannana)))
+	}
+
+	return totalHrs
+}
+
+// 875. Koko Eating Bananas
+func minEatingSpeed(piles []int, h int) int {
+	low := 1
+	high := helper875_1(piles)
+
+	for low <= high {
+		mid := low + (high-low)/2
+
+		res := helper875_2(piles, mid)
+
+		if res <= h {
+			high = mid - 1
+		} else {
+			low = mid + 1
+		}
+
+	}
+
+	return low
+}

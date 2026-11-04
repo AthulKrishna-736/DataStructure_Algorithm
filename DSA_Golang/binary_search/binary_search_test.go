@@ -379,3 +379,55 @@ func TestFindRoot(t *testing.T) {
 		}
 	}
 }
+
+func Test875(t *testing.T) {
+	input := [][]int{
+		{3, 6, 7, 11},
+		{30, 11, 23, 4, 20},
+		{30, 11, 23, 4, 20},
+		{312884470},
+		{805306368, 805306368, 805306368},
+		{2, 2},
+		{5, 10, 15, 20},
+		{100, 200, 300, 400},
+		{1, 1000000000},
+		{312884470},
+	}
+
+	h := []int{
+		8,
+		5,
+		6,
+		312884469,
+		1000000000,
+		2,
+		7,
+		10,
+		3,
+		968709470,
+	}
+
+	expected := []int{
+		4,
+		30,
+		23,
+		2,
+		3,
+		2,
+		10,
+		100,
+		500000000,
+		1,
+	}
+
+	for i := 0; i < len(input); i++ {
+		result := minEatingSpeed(input[i], h[i])
+
+		if result != expected[i] {
+			t.Errorf("Test Failed | Input: %v | Hours: %d | Output: %d | Expected: %d",
+				input[i], h[i], result, expected[i])
+		} else {
+			fmt.Println("Test Passed | Input:", input[i], "| Hours:", h[i], "| Output:", result)
+		}
+	}
+}
