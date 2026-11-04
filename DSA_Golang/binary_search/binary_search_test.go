@@ -362,3 +362,20 @@ func Test69(t *testing.T) {
 		}
 	}
 }
+
+func TestFindRoot(t *testing.T) {
+	input := []int{4, 8, 69}
+	n := []int{2, 3, 4}
+	expected := []int{2, 2, -1}
+
+	for i := 0; i < len(input); i++ {
+		result := findNthRoot(input[i], n[i])
+
+		if result != expected[i] {
+			t.Errorf("Test Failed | Input: %d | N: %d | Output: %d | Expected: %d",
+				input[i], n[i], result, expected[i])
+		} else {
+			fmt.Println("Test Passed | Input:", input[i], "| N:", n[i], "| Output:", result)
+		}
+	}
+}

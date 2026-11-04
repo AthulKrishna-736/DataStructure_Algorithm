@@ -332,3 +332,35 @@ func mySqrt(x int) int {
 
 	return high
 }
+
+func helperRoot(mid int, n int) int {
+	totalRoot := 1
+	for i := 1; i <= n; i++ {
+		totalRoot *= mid
+	}
+
+	return totalRoot
+}
+
+// find N-th root of integer
+func findNthRoot(m int, n int) int {
+	low := 1
+	high := m
+
+	for low <= high {
+		mid := low + (high-low)/2
+
+		res := helperRoot(mid, n)
+		if res == m {
+			return mid
+		}
+
+		if res < m {
+			low = mid + 1
+		} else {
+			high = mid - 1
+		}
+	}
+
+	return -1
+}
