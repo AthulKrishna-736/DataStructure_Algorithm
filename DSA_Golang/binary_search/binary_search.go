@@ -405,3 +405,58 @@ func minEatingSpeed(piles []int, h int) int {
 
 	return low
 }
+
+func helper1482_1(bloomDay []int) (int, int) {
+	maxDays := bloomDay[0]
+	minDays := bloomDay[0]
+
+	for i := 0; i < len(bloomDay); i++ {
+		maxDays = max(maxDays, bloomDay[i])
+		minDays = min(minDays, bloomDay[i])
+	}
+
+	return minDays, maxDays
+}
+
+func helper1482_2(bloomDay []int, day int, m int, k int) bool {
+	totalBouquets := 0
+	count := 0
+
+	for i := 0; i < len(bloomDay); i++ {
+		if bloomDay[i] <= day {
+			count++
+		} else {
+			totalBouquets += count / k
+			count = 0
+		}
+	}
+
+	totalBouquets += count / k
+
+	if totalBouquets >= m {
+		return true
+	}
+
+	return false
+}
+
+// 1482. Minimum Number of Days to Make m Bouquets
+func minDays(bloomDay []int, m int, k int) int {
+	low, high := helper1482_1(bloomDay)
+
+	if m*k > len(bloomDay) {
+		return -1
+	}
+
+	for low <= high {
+		mid := low + (high-low)/2
+
+		if helper1482_2(bloomDay, mid, m, k) {
+			high = mid - 1
+		} else {
+			low = mid + 1
+		}
+	}
+
+	return low
+}

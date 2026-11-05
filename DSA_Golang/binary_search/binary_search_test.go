@@ -431,3 +431,27 @@ func Test875(t *testing.T) {
 		}
 	}
 }
+
+func Test1482(t *testing.T) {
+	bloomDay := [][]int{
+		{1, 10, 3, 10, 2},
+		{1, 10, 3, 10, 2},
+		{7, 7, 7, 7, 12, 7, 7},
+	}
+
+	m := []int{3, 3, 2}
+	k := []int{1, 2, 3}
+	expected := []int{3, -1, 12}
+
+	for i := 0; i < len(bloomDay); i++ {
+		result := minDays(bloomDay[i], m[i], k[i])
+
+		if result != expected[i] {
+			t.Errorf("Test Failed | Bloom Day: %v | Bouquets: %d | Flowers: %d | Output: %d | Expected: %d",
+				bloomDay[i], m[i], k[i], result, expected[i])
+		} else {
+			fmt.Println("Test Passed | Bloom Day:", bloomDay[i],
+				"| Bouquets:", m[i], "| Flowers:", k[i], "| Output:", result)
+		}
+	}
+}
