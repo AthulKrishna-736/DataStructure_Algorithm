@@ -460,3 +460,41 @@ func minDays(bloomDay []int, m int, k int) int {
 
 	return low
 }
+
+func helper1283_1(nums []int) int {
+	maxVal := nums[0]
+
+	for i := 0; i < len(nums); i++ {
+		maxVal = max(maxVal, nums[i])
+	}
+
+	return maxVal
+}
+
+func helper1283_2(nums []int, divisor int, threshold int) bool {
+	total := 0
+
+	for i := 0; i < len(nums); i++ {
+		total += int(math.Ceil(float64(nums[i]) / float64(divisor)))
+	}
+
+	return total <= threshold
+}
+
+// 1283. Find the Smallest Divisor Given a Threshold
+func smallestDivisor(nums []int, threshold int) int {
+	low := 1
+	high := helper1283_1(nums)
+
+	for low <= high {
+		mid := low + (high-low)/2
+
+		if helper1283_2(nums, mid, threshold) {
+			high = mid - 1
+		} else {
+			low = mid + 1
+		}
+	}
+
+	return low
+}

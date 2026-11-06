@@ -455,3 +455,50 @@ func Test1482(t *testing.T) {
 		}
 	}
 }
+
+func Test1283(t *testing.T) {
+	nums := [][]int{
+		{1, 2, 5, 9},
+		{44, 22, 33, 11, 1},
+		{21212, 10101, 12121},
+		{2, 3, 5, 7, 11},
+		{19},
+		{1, 1, 1, 1},
+		{1000000, 1000000, 1000000},
+		{5, 8, 10, 13},
+	}
+
+	threshold := []int{
+		6,
+		5,
+		1000000,
+		11,
+		1,
+		4,
+		3,
+		10,
+	}
+
+	expected := []int{
+		5,
+		44,
+		1,
+		3,
+		19,
+		1,
+		1000000,
+		5,
+	}
+
+	for i := 0; i < len(nums); i++ {
+		result := smallestDivisor(nums[i], threshold[i])
+
+		if result != expected[i] {
+			t.Errorf("Test Failed | Nums: %v | Threshold: %d | Output: %d | Expected: %d",
+				nums[i], threshold[i], result, expected[i])
+		} else {
+			fmt.Println("Test Passed | Nums:", nums[i],
+				"| Threshold:", threshold[i], "| Output:", result)
+		}
+	}
+}
