@@ -502,3 +502,38 @@ func Test1283(t *testing.T) {
 		}
 	}
 }
+
+func Test1011(t *testing.T) {
+	weights := [][]int{
+		{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+		{3, 2, 2, 4, 1, 4},
+		{1, 2, 3, 1, 1},
+		{5, 5, 5, 5, 5},
+		{10, 20, 30, 40, 50, 60},
+		{7, 2, 5, 10, 8},
+		{1},
+		{100, 200, 300, 400},
+		{1, 1, 1, 1, 1, 1, 1},
+		{50, 50, 50, 50},
+	}
+
+	days := []int{
+		5, 3, 4, 5, 2, 5, 1, 2, 3, 2,
+	}
+
+	expected := []int{
+		15, 6, 3, 5, 110, 10, 1, 600, 3, 100,
+	}
+
+	for i := 0; i < len(weights); i++ {
+		result := shipWithinDays(weights[i], days[i])
+
+		if result != expected[i] {
+			t.Errorf("Test Failed | Weights: %v | Days: %d | Output: %d | Expected: %d",
+				weights[i], days[i], result, expected[i])
+		} else {
+			fmt.Println("Test Passed | Weights:", weights[i],
+				"| Days:", days[i], "| Output:", result)
+		}
+	}
+}

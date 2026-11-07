@@ -498,3 +498,50 @@ func smallestDivisor(nums []int, threshold int) int {
 
 	return low
 }
+
+func helper1011_1(weights []int) (int, int) {
+	maxVal := 0
+	totalWeights := 0
+
+	for i := 0; i < len(weights); i++ {
+		maxVal = max(maxVal, weights[i])
+		totalWeights += weights[i]
+	}
+
+	return maxVal, totalWeights
+}
+
+func helper1011_2(weights []int, cap int) int {
+	totalDays := 1
+	load := 0
+
+	for i := 0; i < len(weights); i++ {
+		if load+weights[i] > cap {
+			totalDays++
+			load = weights[i]
+		} else {
+			load += weights[i]
+		}
+	}
+
+	return totalDays
+}
+
+// 1011. Capacity To Ship Packages Within D Days
+func shipWithinDays(weights []int, days int) int {
+	low, high := helper1011_1(weights)
+
+	for low <= high {
+		mid := low + (high-low)/2
+
+		totalDays := helper1011_2(weights, mid)
+
+		if totalDays <= days {
+			high = mid - 1
+		} else {
+			low = mid + 1
+		}
+	}
+
+	return low
+}
