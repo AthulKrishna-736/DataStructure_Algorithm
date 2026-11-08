@@ -537,3 +537,38 @@ func Test1011(t *testing.T) {
 		}
 	}
 }
+
+func Test1539(t *testing.T) {
+	arrays := [][]int{
+		{2, 3, 4, 7, 11},
+		{1, 2, 3, 4},
+		{2, 3, 4, 5, 6, 7},
+		{5, 6, 7, 8, 9},
+		{1, 3, 5, 7, 9},
+		{10, 20, 30, 40, 50},
+		{1},
+		{2},
+		{100, 200, 300, 400},
+		{1, 2, 4, 5, 6},
+	}
+
+	k := []int{
+		5, 2, 3, 1, 5, 10, 1, 1, 50, 3,
+	}
+
+	expected := []int{
+		9, 6, 9, 1, 10, 11, 2, 1, 50, 8,
+	}
+
+	for i := 0; i < len(arrays); i++ {
+		result := findKthPositive(arrays[i], k[i])
+
+		if result != expected[i] {
+			t.Errorf("Test Failed | Array: %v | K: %d | Output: %d | Expected: %d",
+				arrays[i], k[i], result, expected[i])
+		} else {
+			fmt.Println("Test Passed | Array:", arrays[i],
+				"| K:", k[i], "| Output:", result)
+		}
+	}
+}

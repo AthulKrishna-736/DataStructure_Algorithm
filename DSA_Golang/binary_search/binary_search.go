@@ -545,3 +545,22 @@ func shipWithinDays(weights []int, days int) int {
 
 	return low
 }
+
+// 1539. Kth Missing Positive Number
+func findKthPositive(arr []int, k int) int {
+	low := 0
+	high := len(arr) - 1
+
+	for low <= high {
+		mid := low + (high-low)/2
+		missing := arr[mid] - (mid + 1)
+
+		if missing < k {
+			low = mid + 1
+		} else {
+			high = mid - 1
+		}
+	}
+
+	return low + k
+}
