@@ -572,3 +572,39 @@ func Test1539(t *testing.T) {
 		}
 	}
 }
+
+func Test852(t *testing.T) {
+	arrays := [][]int{
+		{0, 1, 0},
+		{0, 2, 1, 0},
+		{1, 2, 3, 2},
+		{0, 10, 5, 2},
+		{3, 5, 3, 2, 0},
+		{0, 1, 2, 3, 4, 3, 2, 1, 0},
+		{1, 3, 5, 7, 6, 4, 2},
+		{0, 5, 10, 15, 20, 18, 12, 8},
+		{2, 4, 6, 8, 10, 9, 7, 5, 3, 1},
+		{1, 4, 7, 9, 12, 15, 14, 11, 8, 6, 2},
+		{100, 200, 300, 400, 350, 250, 150},
+	}
+
+	expected := []int{
+		1, 1, 2, 1, 1, 4, 3, 4, 4, 5, 3,
+	}
+
+	for i := 0; i < len(arrays); i++ {
+		result := peakIndexInMountainArray(arrays[i])
+
+		if result != expected[i] {
+			t.Errorf(
+				"Test Failed | Array: %v | Output: %d | Expected: %d",
+				arrays[i], result, expected[i],
+			)
+		} else {
+			fmt.Println(
+				"Test Passed | Array:", arrays[i],
+				"| Output:", result,
+			)
+		}
+	}
+}
