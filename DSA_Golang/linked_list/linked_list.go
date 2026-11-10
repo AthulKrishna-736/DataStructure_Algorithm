@@ -156,6 +156,23 @@ func (l *LinkedList) SearchNode(key int) *Node {
 	return nil
 }
 
+func (l *LinkedList) reverseList() {
+	curr := l.head
+	var prev *Node
+	var next *Node
+
+	for curr != nil {
+		next = curr.next
+
+		curr.next = prev
+
+		prev = curr
+		curr = next
+	}
+
+	l.head = prev
+}
+
 func main() {
 	list := LinkedList{nil}
 	list.display()
@@ -183,4 +200,6 @@ func main() {
 	list.SearchNode(10)
 	list.SearchNode(50)
 	list.SearchNode(45)
+	list.reverseList()
+	list.display()
 }
