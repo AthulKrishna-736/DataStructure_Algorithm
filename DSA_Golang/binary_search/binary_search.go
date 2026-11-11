@@ -598,3 +598,48 @@ func peakIndexInMountainArray(arr []int) int {
 
 	return -1
 }
+
+// 1608. Special Array With X Elements Greater Than or Equal X
+
+func helper1608_1(nums []int) int {
+	maxVal := math.MinInt
+
+	for i := 0; i < len(nums); i++ {
+		maxVal = max(maxVal, nums[i])
+	}
+
+	return maxVal
+}
+
+func helper1608_2(nums []int, x int) int {
+	count := 0
+
+	for i := 0; i < len(nums); i++ {
+		if nums[i] >= x {
+			count++
+		}
+	}
+
+	return count
+}
+
+func specialArray(nums []int) int {
+	low := 1
+	high := helper1608_1(nums)
+
+	for low <= high {
+		mid := low + (high-low)/2
+
+		totalCount := helper1608_2(nums, mid)
+
+		if totalCount == mid {
+			return mid
+		} else if totalCount > mid {
+			low = mid + 1
+		} else {
+			high = mid - 1
+		}
+	}
+
+	return -1
+}

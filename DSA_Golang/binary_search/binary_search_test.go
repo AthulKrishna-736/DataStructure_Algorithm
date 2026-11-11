@@ -608,3 +608,39 @@ func Test852(t *testing.T) {
 		}
 	}
 }
+
+func Test1608(t *testing.T) {
+	arrays := [][]int{
+		{3, 5},
+		{0, 0},
+		{0, 4, 3, 0, 4},
+		{3, 6, 7, 7, 0},
+		{3, 5, 6, 7, 8},
+		{1, 2, 3, 4, 5},
+		{0, 1, 2, 3, 4},
+		{5, 5, 5, 5, 5},
+		{0, 0, 0, 0},
+		{1, 1, 1, 1, 1},
+		{10, 20, 30, 40, 50},
+	}
+
+	expected := []int{
+		2, -1, 3, -1, 4, 3, -1, 5, -1, -1, 5,
+	}
+
+	for i := 0; i < len(arrays); i++ {
+		result := specialArray(arrays[i])
+
+		if result != expected[i] {
+			t.Errorf(
+				"Test Failed | Array: %v | Output: %d | Expected: %d",
+				arrays[i], result, expected[i],
+			)
+		} else {
+			fmt.Println(
+				"Test Passed | Array:", arrays[i],
+				"| Output:", result,
+			)
+		}
+	}
+}
