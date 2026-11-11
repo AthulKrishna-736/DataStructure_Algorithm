@@ -173,6 +173,25 @@ func (l *LinkedList) reverseList() {
 	l.head = prev
 }
 
+func (l *LinkedList) deleteAtValue(val int) {
+	if l.head == nil {
+		return
+	}
+
+	dummy := &Node{data: -1, next: l.head}
+	curr := dummy
+
+	for curr.next != nil {
+		if curr.next.data == val {
+			curr.next = curr.next.next
+		} else {
+			curr = curr.next
+		}
+	}
+
+	l.head = dummy.next
+}
+
 func main() {
 	list := LinkedList{nil}
 	list.display()
@@ -201,5 +220,10 @@ func main() {
 	list.SearchNode(50)
 	list.SearchNode(45)
 	list.reverseList()
+	list.display()
+	list.insertAtBegin(10)
+	list.insertAtPos(10, 3)
+	list.display()
+	list.deleteAtValue(10)
 	list.display()
 }
