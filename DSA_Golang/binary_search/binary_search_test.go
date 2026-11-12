@@ -644,3 +644,41 @@ func Test1608(t *testing.T) {
 		}
 	}
 }
+
+func Test441(t *testing.T) {
+	arrays := []int{
+		5,
+		8,
+		1,
+		2,
+		3,
+		4,
+		6,
+		10,
+		15,
+		21,
+		0,
+		1804289383,
+		2147483647,
+	}
+
+	expected := []int{
+		2, 3, 1, 1, 2, 2, 3, 4, 5, 6, 0, 60070, 65535,
+	}
+
+	for i := 0; i < len(arrays); i++ {
+		result := arrangeCoins(arrays[i])
+
+		if result != expected[i] {
+			t.Errorf(
+				"Test Failed | Coins: %d | Output: %d | Expected: %d",
+				arrays[i], result, expected[i],
+			)
+		} else {
+			fmt.Println(
+				"Test Passed | Coins:", arrays[i],
+				"| Output:", result,
+			)
+		}
+	}
+}

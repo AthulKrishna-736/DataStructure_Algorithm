@@ -643,3 +643,33 @@ func specialArray(nums []int) int {
 
 	return -1
 }
+
+// 441. Arranging Coins
+func helper441_1(a int, b int) int {
+	n := b - a + 1
+
+	total := (a + b) * n / 2
+
+	return total
+}
+
+func arrangeCoins(n int) int {
+	low := 1
+	high := n
+
+	for low <= high {
+		mid := low + (high-low)/2
+
+		totalCoins := helper441_1(1, mid)
+
+		if totalCoins == n {
+			return mid
+		} else if totalCoins > n {
+			high = mid - 1
+		} else {
+			low = mid + 1
+		}
+	}
+
+	return high
+}
