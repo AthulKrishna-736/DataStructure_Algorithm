@@ -682,3 +682,67 @@ func Test441(t *testing.T) {
 		}
 	}
 }
+
+func Test1385(t *testing.T) {
+	arr1 := [][]int{
+		{4, 5, 8},
+		{1, 4, 2, 3},
+		{2, 1, 100, 3},
+		{1, 2, 3},
+		{10, 20, 30},
+		{1},
+		{5, 1, 4},
+		{-5, -2, 0, 3},
+	}
+
+	arr2 := [][]int{
+		{10, 9, 1, 8},
+		{-3, -2, 0, 1, 3},
+		{-5, -2, 10, -3, 7},
+		{4, 5, 6},
+		{1, 2, 3},
+		{100},
+		{2, 3, 6},
+		{-10, -3, 1, 5},
+	}
+
+	d := []int{
+		2,
+		3,
+		5,
+		1,
+		5,
+		99,
+		1,
+		1,
+	}
+
+	expected := []int{
+		2,
+		0,
+		1,
+		2,
+		3,
+		0,
+		0,
+		2,
+	}
+
+	for i := 0; i < len(arr1); i++ {
+		result := findTheDistanceValue(arr1[i], arr2[i], d[i])
+
+		if result != expected[i] {
+			t.Errorf(
+				"Test Failed | Arr1: %v | Arr2: %v | D: %d | Output: %d | Expected: %d",
+				arr1[i], arr2[i], d[i], result, expected[i],
+			)
+		} else {
+			fmt.Println(
+				"Test Passed | Arr1:", arr1[i],
+				"| Arr2:", arr2[i],
+				"| D:", d[i],
+				"| Output:", result,
+			)
+		}
+	}
+}

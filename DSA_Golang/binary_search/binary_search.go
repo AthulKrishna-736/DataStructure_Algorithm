@@ -1,6 +1,9 @@
 package binarysearch
 
-import "math"
+import (
+	"math"
+	"sort"
+)
 
 func BinarySearch(nums []int, target int) bool {
 	left := 0
@@ -672,4 +675,40 @@ func arrangeCoins(n int) int {
 	}
 
 	return high
+}
+
+// 1385. Find the Distance Value Between Two Arrays
+func helper1385(arr []int, target int) int {
+	low := 0
+	high := len(arr)
+
+	for low < high {
+		mid := low + (high-low)/2
+
+		if arr[mid] < target {
+			low = mid + 1
+		} else {
+			high = mid
+		}
+	}
+
+	return low
+}
+
+func findTheDistanceValue(arr1 []int, arr2 []int, d int) int {
+	sort.Ints(arr2)
+
+	count := 0
+
+	for _, num := range arr1 {
+		index := helper1385(arr2, num-d)
+
+		if index < len(arr2) && arr2[index] <= num+d {
+			continue
+		}
+
+		count++
+	}
+
+	return count
 }
