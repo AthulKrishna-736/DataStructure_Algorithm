@@ -746,3 +746,55 @@ func Test1385(t *testing.T) {
 		}
 	}
 }
+
+func Test2187(t *testing.T) {
+	time := [][]int{
+		{1, 2, 3},
+		{2},
+		{5, 10, 10},
+		{1, 1, 1},
+		{3, 6, 9},
+		{10, 20},
+		{1, 2, 3, 4},
+		{100},
+	}
+
+	totalTrips := []int{
+		5,
+		1,
+		9,
+		10,
+		12,
+		5,
+		20,
+		10,
+	}
+
+	expected := []int{
+		3,
+		2,
+		25,
+		4,
+		18,
+		100,
+		12,
+		1000,
+	}
+
+	for i := 0; i < len(time); i++ {
+		result := minimumTime(time[i], totalTrips[i])
+
+		if result != expected[i] {
+			t.Errorf(
+				"Test Failed | Time: %v | TotalTrips: %d | Output: %d | Expected: %d",
+				time[i], totalTrips[i], result, expected[i],
+			)
+		} else {
+			fmt.Println(
+				"Test Passed | Time:", time[i],
+				"| TotalTrips:", totalTrips[i],
+				"| Output:", result,
+			)
+		}
+	}
+}

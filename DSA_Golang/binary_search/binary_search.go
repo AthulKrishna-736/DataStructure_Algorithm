@@ -712,3 +712,43 @@ func findTheDistanceValue(arr1 []int, arr2 []int, d int) int {
 
 	return count
 }
+
+// 2187. Minimum Time to Complete Trips
+func helper2187_1(time []int) int {
+	minTime := time[0]
+
+	for i := 1; i < len(time); i++ {
+		if time[i] < minTime {
+			minTime = time[i]
+		}
+	}
+
+	return minTime
+}
+
+func helper2187_2(time []int, tripTime int, totalTrips int) bool {
+	totalTime := 0
+
+	for i := 0; i < len(time); i++ {
+		totalTime += tripTime / time[i]
+	}
+
+	return totalTime >= totalTrips
+}
+
+func minimumTime(time []int, totalTrips int) int {
+	low := 1
+	high := helper2187_1(time) * totalTrips
+
+	for low <= high {
+		mid := low + (high-low)/2
+
+		if helper2187_2(time, mid, totalTrips) {
+			high = mid - 1
+		} else {
+			low = mid + 1
+		}
+	}
+
+	return low
+}
