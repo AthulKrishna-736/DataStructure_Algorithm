@@ -752,3 +752,41 @@ func minimumTime(time []int, totalTrips int) int {
 
 	return low
 }
+
+// 1552. Magnetic Force Between Two Balls
+func helper1552(position []int, force int, balls int) bool {
+	count := 1
+	basket := position[0]
+
+	for i := 1; i < len(position); i++ {
+		if position[i]-basket >= force {
+			basket = position[i]
+			count++
+		}
+
+		if count == balls {
+			return true
+		}
+	}
+
+	return false
+}
+
+func maxDistance(position []int, m int) int {
+	sort.Ints(position)
+
+	low := 1
+	high := position[len(position)-1] - position[0]
+
+	for low <= high {
+		mid := low + (high-low)/2
+
+		if helper1552(position, mid, m) {
+			low = mid + 1
+		} else {
+			high = mid - 1
+		}
+	}
+
+	return high
+}

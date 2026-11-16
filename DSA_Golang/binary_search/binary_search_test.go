@@ -798,3 +798,61 @@ func Test2187(t *testing.T) {
 		}
 	}
 }
+
+func Test1552(t *testing.T) {
+	position := [][]int{
+		{1, 2, 3, 4, 7},
+		{5, 4, 3, 2, 1, 1000000000},
+		{1, 2},
+		{1, 3, 5, 7, 9},
+		{1, 2, 4, 8, 16},
+		{1, 10, 20, 30, 40, 50},
+		{1, 2, 3, 4, 5, 6},
+		{10, 20, 30, 40, 50},
+		{1, 5, 9, 13, 17, 21},
+		{1, 100, 200, 300, 400, 500},
+	}
+
+	m := []int{
+		3,
+		2,
+		2,
+		3,
+		3,
+		3,
+		4,
+		5,
+		4,
+		2,
+	}
+
+	expected := []int{
+		3,
+		999999999,
+		1,
+		4,
+		7,
+		20,
+		1,
+		10,
+		4,
+		499,
+	}
+
+	for i := 0; i < len(position); i++ {
+		result := maxDistance(position[i], m[i])
+
+		if result != expected[i] {
+			t.Errorf(
+				"Test Failed | Position: %v | M: %d | Output: %d | Expected: %d",
+				position[i], m[i], result, expected[i],
+			)
+		} else {
+			fmt.Println(
+				"Test Passed | Position:", position[i],
+				"| M:", m[i],
+				"| Output:", result,
+			)
+		}
+	}
+}
