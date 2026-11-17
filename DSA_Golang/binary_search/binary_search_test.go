@@ -856,3 +856,61 @@ func Test1552(t *testing.T) {
 		}
 	}
 }
+
+func Test1760(t *testing.T) {
+	nums := [][]int{
+		{9},
+		{2, 4, 8, 2},
+		{7, 17},
+		{1, 2, 3, 4, 5},
+		{100},
+		{1, 1, 1, 1},
+		{9, 9, 9},
+		{100, 200, 300},
+		{1000000000},
+		{1000000000, 1000000000},
+	}
+
+	maxOperations := []int{
+		2,
+		4,
+		2,
+		3,
+		1,
+		10,
+		2,
+		5,
+		999999999,
+		1,
+	}
+
+	expected := []int{
+		3,
+		2,
+		7,
+		2,
+		50,
+		1,
+		5,
+		100,
+		1,
+		500000000,
+	}
+
+	for i := 0; i < len(nums); i++ {
+		result := minimumSize(nums[i], maxOperations[i])
+
+		if result != expected[i] {
+			t.Errorf(
+				"Test Failed | Nums: %v | MaxOperations: %d | Output: %d | Expected: %d",
+				nums[i], maxOperations[i], result, expected[i],
+			)
+		} else {
+			fmt.Println(
+				"Test Passed | Nums:", nums[i],
+				"| MaxOperations:", maxOperations[i],
+				"| Output:", result,
+			)
+		}
+	}
+}
