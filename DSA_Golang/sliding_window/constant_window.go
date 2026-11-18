@@ -744,7 +744,7 @@ func countKConstraintSubstrings1(s string, k int) int {
 
 // 3258 array data structure version
 func countKConstraintSubstrings2(s string, k int) int {
-	count := 0	
+	count := 0
 	binArr := [2]int{}
 
 	l := 0
@@ -768,4 +768,76 @@ func countKConstraintSubstrings2(s string, k int) int {
 	}
 
 	return count
+}
+
+// 3318. Find X-Sum of All K-Long Subarrays I
+func calculateXSum(hashMap map[int]int, x int) int {
+
+	// Extract distinct numbers
+	keys := []int{}
+
+	for key := range hashMap {
+		keys = append(keys, key)
+	}
+
+	// Sort by frequency and value
+	sort.Slice(keys, func(a, b int) bool {
+		if hashMap[keys[a]] == hashMap[keys[b]] {
+			return keys[a] > keys[b]
+		}
+
+		return hashMap[keys[a]] > hashMap[keys[b]]
+	})
+
+	// Calculate X-Sum
+	sum := 0
+
+	for i := 0; i < x && i < len(keys); i++ {
+		sum += keys[i] * hashMap[keys[i]]
+	}
+
+	return sum
+}
+
+func findXSum(nums []int, k int, x int) []int {
+	result := []int{}
+
+	if k > len(nums) || k <= 0 {
+		return result
+	}
+
+	hashMap := make(map[int]int)
+
+	l := 0
+	r := k - 1
+
+	// Build initial window
+	for i := 0; i <= r; i++ {
+		hashMap[nums[i]]++
+	}
+
+	// Calculate first window X-Sum
+	result = append(result, calculateXSum(hashMap, x))
+
+	// Slide the window
+	for r < len(nums)-1 {
+
+		// Remove outgoing element
+		hashMap[nums[l]]--
+
+		if hashMap[nums[l]] == 0 {
+			delete(hashMap, nums[l])
+		}
+
+		l++
+		r++
+
+		// Add incoming element
+		hashMap[nums[r]]++
+
+		// Calculate current window X-Sum
+		result = append(result, calculateXSum(hashMap, x))
+	}
+
+	return result
 }
